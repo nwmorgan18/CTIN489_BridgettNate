@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class Repulse : MonoBehaviour
 {
-    public float repulsespeed = 200f;
+    [SerializeField] private float repulsespeed = 200f;
     Rigidbody2D rb;
     GameObject helper;
     Vector2 capsulepos;
     Vector2 playerpos;
     Vector2 direction;
     float distancemulti;
-    public float orbitspeed = 10f;
+    [SerializeField] private float orbitspeed = 10f;
+    [SerializeField] private float maxspeed = 100f;
     bool mousedown = false;
 
     //GameObject mainCamera;
@@ -29,6 +30,12 @@ public class Repulse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(rb.velocity.magnitude > maxspeed)
+        {
+            Vector2 olddirection = rb.velocity.normalized;
+            rb.velocity = olddirection * maxspeed;
+        }
+
         if (Input.GetMouseButtonDown(0) || mousedown)
         {
             capsulepos = (Vector2)transform.position;
