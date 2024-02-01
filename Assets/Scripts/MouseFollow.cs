@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseFollow : MonoBehaviour
 {
     Vector3 mousePosition;
-    public float moveSpeed = 0.1f;
+    [SerializeField] private float moveSpeed = 0.1f;
     Rigidbody2D rb;
     Vector2 position = new Vector2(0f, 0f);
     //private bool mousedown = false;

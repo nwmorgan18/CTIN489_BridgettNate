@@ -28,7 +28,7 @@ public class Repulse : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(rb.velocity.magnitude > maxspeed)
         {
