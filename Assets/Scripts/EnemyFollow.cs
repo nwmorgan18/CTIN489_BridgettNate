@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyFollow : MonoBehaviour
 {
-    private Vector3 playerPosition;
+    //private Vector3 playerPosition;
     private GameObject player;
     [SerializeField] private float moveSpeed = 0.1f;
     Rigidbody2D rb;
-    Vector2 position = new Vector2(0f, 0f);
+    //Vector2 position = new Vector2(0f, 0f);
+    Vector2 direction;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +21,14 @@ public class EnemyFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerPosition = player.transform.position;
+        //playerPosition = player.transform.position;
         //playerPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        position = Vector2.Lerp(transform.position, playerPosition, moveSpeed);
+        //position = Vector2.Lerp(transform.position, playerPosition, moveSpeed);
     }
     private void FixedUpdate()
     {
-        rb.MovePosition(position);
+        direction = player.transform.position - this.transform.position;
+        //rb.MovePosition(position);
+        rb.velocity = direction.normalized * moveSpeed;
     }
 }
