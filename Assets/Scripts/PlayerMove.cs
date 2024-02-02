@@ -15,11 +15,15 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float rollspeed = 30f;
     [SerializeField] private float dodgingmaxtime = 0.25f;
     [SerializeField] private float dodgetimermax = 1f;
+    private AudioSource walksound;
+    private bool walking;
+    //[SerializeField] private float walksoundcutoff = 1f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         ogspeed = movementspeed;
+        walksound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -41,6 +45,11 @@ public class PlayerMove : MonoBehaviour
         if(dodgingtime <= 0)
         {
             dodging = false;
+        }
+
+        if(walking && !walksound.isPlaying)
+        {
+            walksound.Play();
         }
     }
 
@@ -73,5 +82,21 @@ public class PlayerMove : MonoBehaviour
         }
 
         rb.velocity = direction * movementspeed;
+       
+
+        if (rb.velocity.sqrMagnitude != 0)
+        {
+            walking = true;
+        }
+        else
+        {
+            walking = false;
+        }
+        /*
+        if (rb.velocity.magnitude <= walksoundcutoff || rb.velocity.magnitude >= walksoundcutoff * -1)
+        {
+            walking = false;
+        }
+        */
     }
 }

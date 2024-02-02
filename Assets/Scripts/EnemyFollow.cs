@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyFollow : MonoBehaviour
 {
@@ -30,5 +31,14 @@ public class EnemyFollow : MonoBehaviour
         direction = player.transform.position - this.transform.position;
         //rb.MovePosition(position);
         rb.velocity = direction.normalized * moveSpeed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            string currentscene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentscene);
+        }
     }
 }
