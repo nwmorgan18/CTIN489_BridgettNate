@@ -29,6 +29,15 @@ public class PlayerMove : MonoBehaviour
         {
             direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         }
+
+        if (direction.x > 0) {
+            // flip horizontally right
+            flipSprite(true);
+        }
+        else if (direction.x < 0) {
+            // flip left aka revert to original
+            flipSprite(false);
+        }
         
         if (dodgetimer > 0)
         {
@@ -73,5 +82,18 @@ public class PlayerMove : MonoBehaviour
         }
 
         rb.velocity = direction * movementspeed;
+    }
+
+    private void flipSprite(bool left) {
+        // left is the default that I drew it to face
+
+        // Get the current scale of the sprite
+        Vector3 scale = transform.localScale;
+
+        // If flip is true, flip the sprite horizontally; otherwise, restore its original scale
+        scale.x = left ? -1 * Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+
+        // Apply the new scale to the sprite
+        transform.localScale = scale;
     }
 }
