@@ -9,8 +9,9 @@ public class Repulse : MonoBehaviour
     Rigidbody2D rb;
     GameObject helper;
     Vector2 capsulepos;
-    Vector2 playerpos;
+    Vector2 helperpos;
     Vector2 direction;
+    Vector2 gotopos;
     float distancemulti;
     [SerializeField] private float orbitspeed = 10f;
     [SerializeField] private float maxspeed = 100f;
@@ -27,8 +28,13 @@ public class Repulse : MonoBehaviour
         helper = GameObject.FindWithTag("Helper");
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
+    {
+        
+    }
+
+        // Update is called once per frame
+        void FixedUpdate()
     {
         if(rb.velocity.magnitude > maxspeed)
         {
@@ -38,22 +44,27 @@ public class Repulse : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) || mousedown)
         {
-            capsulepos = (Vector2)transform.position;
-            playerpos = (Vector2)helper.transform.position;
-            direction = playerpos - capsulepos;
-            float movementX = direction.x;
-            float movementY = direction.y;
-            Vector3 movement = new Vector3(movementX, movementY, 0f);
-            rb.AddForce(movement.normalized * orbitspeed);
             mousedown = true;
+            /*
+            helperpos = helper.transform.position;
+            gotopos = Vector2.Lerp(transform.position, helperpos, orbitspeed);
+            rb.MovePosition(gotopos);
+            */
+
+            capsulepos = (Vector2)transform.position;
+            helperpos = (Vector2)helper.transform.position;
+            direction = helperpos - capsulepos;
+            //rb.velocity = direction.normalized * orbitspeed;
+            rb.AddForce(direction.normalized * orbitspeed);
+            
         }
         if (Input.GetMouseButtonUp(0))
         {
             mousedown = false;
             capsulepos = (Vector2)transform.position;
-            playerpos = (Vector2)helper.transform.position;
-            direction = capsulepos - playerpos;
-            distancemulti = 1 / (capsulepos - playerpos).magnitude;
+            helperpos = (Vector2)helper.transform.position;
+            direction = capsulepos - helperpos;
+            distancemulti = 1 / (capsulepos - helperpos).magnitude;
             rb.AddForce(direction.normalized * repulsespeed * distancemulti);
             // mainCamera.GetComponent<ShakeBehavior>().TriggerShake();
         }
