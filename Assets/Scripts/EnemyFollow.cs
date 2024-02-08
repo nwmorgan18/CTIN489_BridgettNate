@@ -31,6 +31,15 @@ public class EnemyFollow : MonoBehaviour
         direction = player.transform.position - this.transform.position;
         //rb.MovePosition(position);
         rb.velocity = direction.normalized * moveSpeed;
+
+        if (direction.x > 0) {
+            // flip horizontally right
+            flipSprite(false);
+        }
+        else if (direction.x < 0) {
+            // flip left aka revert to original
+            flipSprite(true);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -40,5 +49,18 @@ public class EnemyFollow : MonoBehaviour
             string currentscene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentscene);
         }
+    }
+
+    private void flipSprite(bool left) {
+        // left is the default that I drew it to face
+
+        // Get the current scale of the sprite
+        Vector3 scale = transform.localScale;
+
+        // If flip is true, flip the sprite horizontally; otherwise, restore its original scale
+        scale.x = left ? -1 * Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+
+        // Apply the new scale to the sprite
+        transform.localScale = scale;
     }
 }
