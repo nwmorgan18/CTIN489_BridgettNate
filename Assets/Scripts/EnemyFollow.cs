@@ -11,34 +11,45 @@ public class EnemyFollow : MonoBehaviour
     Rigidbody2D rb;
     //Vector2 position = new Vector2(0f, 0f);
     Vector2 direction;
+    private AudioSource damagesound;
+    [SerializeField] private int health = 3;
+    [SerializeField] private float invincibletime = 1f;
+    private float currentlyinvincible = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
+        damagesound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //playerPosition = player.transform.position;
-        //playerPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        //position = Vector2.Lerp(transform.position, playerPosition, moveSpeed);
+        if(currentlyinvincible > 0)
+        {
+            currentlyinvincible -= Time.deltaTime;
+        }
     }
     private void FixedUpdate()
     {
-        direction = player.transform.position - this.transform.position;
-        //rb.MovePosition(position);
-        rb.velocity = direction.normalized * moveSpeed;
+        if(currentlyinvincible <= 0)
+        {
+            direction = player.transform.position - this.transform.position;
+            //rb.MovePosition(position);
+            rb.velocity = direction.normalized * moveSpeed;
 
-        if (direction.x > 0) {
-            // flip horizontally right
-            flipSprite(false);
-        }
-        else if (direction.x < 0) {
-            // flip left aka revert to original
-            flipSprite(true);
+            if (direction.x > 0)
+            {
+                // flip horizontally right
+                flipSprite(false);
+            }
+            else if (direction.x < 0)
+            {
+                // flip left aka revert to original
+                flipSprite(true);
+            }
         }
     }
 
@@ -48,6 +59,17 @@ public class EnemyFollow : MonoBehaviour
         {
             string currentscene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentscene);
+        }
+        if(other.gameObject.CompareTag("Capsule") && currentlyinvincible <= 0f && !Input.GetMouseButton(0))
+        {
+            health -= 1;
+            Debug.Log("Enemy Hit");
+            currentlyinvincible = invincibletime;
+            damagesound.Play();
+            if(health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 

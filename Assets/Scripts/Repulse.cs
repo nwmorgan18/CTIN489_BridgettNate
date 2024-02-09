@@ -11,11 +11,11 @@ public class Repulse : MonoBehaviour
     Vector2 capsulepos;
     Vector2 helperpos;
     Vector2 direction;
-    Vector2 gotopos;
+    //Vector2 gotopos;
     float distancemulti;
     [SerializeField] private float orbitspeed = 10f;
-    [SerializeField] private float maxspeed = 100f;
-    bool mousedown = false;
+    //[SerializeField] private float maxspeed = 100f;
+    //bool mousedown = false;
 
     //GameObject mainCamera;
     //private float angle;
@@ -34,17 +34,20 @@ public class Repulse : MonoBehaviour
     }
 
         // Update is called once per frame
-        void FixedUpdate()
+    void FixedUpdate()
     {
+        
+        /*
         if(rb.velocity.magnitude > maxspeed)
         {
             Vector2 olddirection = rb.velocity.normalized;
             rb.velocity = olddirection * maxspeed;
         }
+        */
 
-        if (Input.GetMouseButtonDown(0) || mousedown)
+        if (Input.GetMouseButton(0))
         {
-            mousedown = true;
+            //mousedown = true;
             /*
             helperpos = helper.transform.position;
             gotopos = Vector2.Lerp(transform.position, helperpos, orbitspeed);
@@ -60,7 +63,7 @@ public class Repulse : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            mousedown = false;
+            //mousedown = false;
             capsulepos = (Vector2)transform.position;
             helperpos = (Vector2)helper.transform.position;
             direction = capsulepos - helperpos;
