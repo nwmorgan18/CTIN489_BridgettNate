@@ -7,6 +7,9 @@ TagManager:
   - Helper
   - Enemy
   - Wall
+  - Poison
+  - Tree
+  - Capsule
   layers:
   - Default
   - TransparentFX
