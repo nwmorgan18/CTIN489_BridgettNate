@@ -20,7 +20,10 @@ public class HelperIgnore : MonoBehaviour
         for (int i = 0; i < allignoretags.Count; i++)
         {
             GameObject obj = GameObject.FindWithTag(allignoretags[i]);
-            Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), coll);
+            if (obj != null)
+            {
+                Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), coll);
+            }
         }
     }
 }

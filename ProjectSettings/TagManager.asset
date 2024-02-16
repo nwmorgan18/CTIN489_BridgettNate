@@ -10,6 +10,7 @@ TagManager:
   - Poison
   - Tree
   - Capsule
+  - Spawner
   layers:
   - Default
   - TransparentFX
