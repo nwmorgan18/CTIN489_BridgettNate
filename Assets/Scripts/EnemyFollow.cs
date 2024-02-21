@@ -15,6 +15,9 @@ public class EnemyFollow : MonoBehaviour
     [SerializeField] private int health = 3;
     [SerializeField] private float invincibletime = 1f;
     private float currentlyinvincible = 0f;
+    private GameObject spawner;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,7 @@ public class EnemyFollow : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
         damagesound = GetComponent<AudioSource>();
+        spawner = GameObject.FindWithTag("Spawner");
     }
 
     // Update is called once per frame
@@ -68,6 +72,7 @@ public class EnemyFollow : MonoBehaviour
             damagesound.Play();
             if(health <= 0)
             {
+                spawner.GetComponent<ShipPieceSpawn>().AddKill(1);
                 Destroy(this.gameObject);
             }
         }

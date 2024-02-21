@@ -19,11 +19,14 @@ public class PlayerMove : MonoBehaviour
     private bool walking;
     //[SerializeField] private float walksoundcutoff = 1f;
 
+    private Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         ogspeed = movementspeed;
         walksound = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -95,12 +98,18 @@ public class PlayerMove : MonoBehaviour
 
         if (rb.velocity.sqrMagnitude != 0)
         {
+            if (!walking) {
+                animator.Play("Base Layer.walkingCycle");
+            }
             walking = true;
         }
         else
         {
             walking = false;
+            animator.Play("Base Layer.Idle");
         }
+
+        // animator.SetBool("isWalking", walking);
         /*
         if (rb.velocity.magnitude <= walksoundcutoff || rb.velocity.magnitude >= walksoundcutoff * -1)
         {
