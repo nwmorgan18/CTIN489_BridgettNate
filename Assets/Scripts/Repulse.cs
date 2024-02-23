@@ -11,6 +11,9 @@ public class Repulse : MonoBehaviour
     Vector2 capsulepos;
     Vector2 helperpos;
     Vector2 direction;
+    [SerializeField] private int capsulenum;
+    private List<Vector2> capsuleslots;
+
     //Vector2 gotopos;
     float distancemulti;
     [SerializeField] private float orbitspeed = 10f;
@@ -26,6 +29,15 @@ public class Repulse : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         //mainCamera = GameObject.FindWithTag("MainCamera");
         helper = GameObject.FindWithTag("Helper");
+        capsuleslots = new List<Vector2>();
+        capsuleslots.Add(new Vector2(0,-2));
+        capsuleslots.Add(new Vector2(0, 2));
+        capsuleslots.Add(new Vector2(2, 0));
+        capsuleslots.Add(new Vector2(-2, 0));
+        capsuleslots.Add(new Vector2(1.5f, 1.5f));
+        capsuleslots.Add(new Vector2(-1.5f, -1.5f));
+        capsuleslots.Add(new Vector2(-1.5f, 1.5f));
+        capsuleslots.Add(new Vector2(1.5f, -1.5f));
     }
 
     private void Update()
@@ -36,7 +48,7 @@ public class Repulse : MonoBehaviour
         // Update is called once per frame
     void FixedUpdate()
     {
-        
+
         /*
         if(rb.velocity.magnitude > maxspeed)
         {
@@ -45,22 +57,6 @@ public class Repulse : MonoBehaviour
         }
         */
 
-        if (Input.GetMouseButton(0))
-        {
-            //mousedown = true;
-            /*
-            helperpos = helper.transform.position;
-            gotopos = Vector2.Lerp(transform.position, helperpos, orbitspeed);
-            rb.MovePosition(gotopos);
-            */
-
-            capsulepos = (Vector2)transform.position;
-            helperpos = (Vector2)helper.transform.position;
-            direction = helperpos - capsulepos;
-            //rb.velocity = direction.normalized * orbitspeed;
-            rb.AddForce(direction.normalized * orbitspeed);
-            
-        }
         if (Input.GetMouseButtonUp(0))
         {
             //mousedown = false;
@@ -71,6 +67,23 @@ public class Repulse : MonoBehaviour
             rb.AddForce(direction.normalized * repulsespeed * distancemulti);
             // mainCamera.GetComponent<ShakeBehavior>().TriggerShake();
         }
+        else if (Input.GetMouseButton(0))
+        {
+            //mousedown = true;
+            /*
+            helperpos = helper.transform.position;
+            gotopos = Vector2.Lerp(transform.position, helperpos, orbitspeed);
+            rb.MovePosition(gotopos);
+            */
+
+            capsulepos = (Vector2)transform.position;
+            helperpos = (Vector2)helper.transform.position;
+            direction = helperpos - capsulepos + capsuleslots[capsulenum];
+            //rb.velocity = direction.normalized * orbitspeed;
+            rb.AddForce(direction.normalized * orbitspeed);
+            
+        }
+
         if (Input.GetKeyUp("r"))
         {
             string currentscene = SceneManager.GetActiveScene().name;

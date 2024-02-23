@@ -64,7 +64,7 @@ public class EnemyFollow : MonoBehaviour
             string currentscene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentscene);
         }
-        if(other.gameObject.CompareTag("Capsule") && currentlyinvincible <= 0f && !Input.GetMouseButton(0))
+        if(other.gameObject.CompareTag("Capsule") && currentlyinvincible <= 0f)
         {
             health -= 1;
             Debug.Log("Enemy Hit");
