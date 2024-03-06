@@ -14,6 +14,7 @@ public class HelperIgnore : MonoBehaviour
         allignoretags = new List<string>(){ "Tree", "Player", "Enemy", "Wall"};
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -28,13 +29,7 @@ public class HelperIgnore : MonoBehaviour
                     Physics2D.IgnoreCollision(objs[j].GetComponent<Collider2D>(), coll);
                 }
             }
-            /*
-            if (obj != null)
-            {
-                Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), coll);
-                Debug.Log("Ignore: " + obj.name);
-            }
-            */
+
         }
     }
 }
