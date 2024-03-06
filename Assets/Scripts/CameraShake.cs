@@ -35,5 +35,22 @@ public class CameraShake : MonoBehaviour
                 channelPerlin.m_AmplitudeGain = 0f;
             }
         }
+
+        if (cameraobject.transform.position.x > 35)
+        {
+            transform.position = new Vector2(35f, transform.position.y);
+        }
+        if (cameraobject.transform.position.x < -35)
+        {
+            transform.position = new Vector2(-35f, transform.position.y);
+        }
+        if (cameraobject.transform.position.y > 15)
+        {
+            transform.position = new Vector2(transform.position.x, 15f);
+        }
+        if (cameraobject.transform.position.x < -15)
+        {
+            transform.position = new Vector2(transform.position.x, -15f);
+        }
     }
 }
