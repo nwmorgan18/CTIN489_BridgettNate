@@ -27,6 +27,7 @@ public class PlayerMove : MonoBehaviour
         ogspeed = movementspeed;
         walksound = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+        Physics2D.IgnoreLayerCollision(0, 3, true);
     }
 
     // Update is called once per frame
@@ -107,6 +108,7 @@ public class PlayerMove : MonoBehaviour
         {
             walking = false;
             animator.Play("Base Layer.Idle");
+            
         }
     }
 

@@ -18,8 +18,7 @@ public class EnemyFollow : MonoBehaviour
     private float currentlyinvincible = 0f;
     private GameObject spawner;
     private NavMeshAgent agent;
-
-
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +28,9 @@ public class EnemyFollow : MonoBehaviour
         damagesound = GetComponent<AudioSource>();
         spawner = GameObject.FindWithTag("Spawner");
         agent = GetComponent <NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        // start walking animation
+        animator.Play("Base Layer.Enemy1Walk");
     }
 
     // Update is called once per frame
@@ -75,6 +77,7 @@ public class EnemyFollow : MonoBehaviour
             SceneManager.LoadScene(currentscene);
         }
         */
+
         if(other.gameObject.CompareTag("Capsule") && currentlyinvincible <= 0f)
         {
             health -= 1;

@@ -14,6 +14,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float shakeintensity = 5f;
     [SerializeField] float shaketime = 0.1f;
 
+    // UI stuff
+    public Sprite fullHealthSprite;
+    public Sprite lowHealthSprite;
+    public UnityEngine.UI.Image healthImage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +29,9 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // update UI
+        UpdateHealthUI();
+
         if (curhealth <= 0)
         {
             curhealth = maxhealth;
@@ -47,6 +55,15 @@ public class PlayerHealth : MonoBehaviour
             curtime = invicibletime;
             CameraShake.Instance.Shake(shakeintensity, shaketime);
             Debug.Log("Player Hit");
+        }
+    }
+
+    private void UpdateHealthUI() {
+        if (curhealth > 1) {
+            healthImage.sprite = fullHealthSprite;
+        }
+        else {
+            healthImage.sprite = lowHealthSprite;
         }
     }
 }
