@@ -36,6 +36,7 @@ public class CameraShake : MonoBehaviour
             }
         }
 
+        /*
         if (cameraobject.transform.position.x > 35)
         {
             transform.position = new Vector2(35f, transform.position.y);
@@ -52,5 +53,6 @@ public class CameraShake : MonoBehaviour
         {
             transform.position = new Vector2(transform.position.x, -15f);
         }
+        */
     }
 }

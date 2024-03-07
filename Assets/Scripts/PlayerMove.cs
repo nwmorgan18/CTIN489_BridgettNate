@@ -93,8 +93,8 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        rb.velocity = direction * movementspeed;
-       
+        rb.AddForce(direction * movementspeed);
+
 
         if (rb.velocity.sqrMagnitude != 0)
         {
@@ -108,14 +108,6 @@ public class PlayerMove : MonoBehaviour
             walking = false;
             animator.Play("Base Layer.Idle");
         }
-
-        // animator.SetBool("isWalking", walking);
-        /*
-        if (rb.velocity.magnitude <= walksoundcutoff || rb.velocity.magnitude >= walksoundcutoff * -1)
-        {
-            walking = false;
-        }
-        */
     }
 
     private void flipSprite(bool left) {

@@ -13,6 +13,7 @@ public class Repulse : MonoBehaviour
     Vector2 direction;
     [SerializeField] private int capsulenum;
     private List<Vector2> capsuleslots;
+    Collider2D coll;
 
     //Vector2 gotopos;
     float distancemulti;
@@ -27,6 +28,7 @@ public class Repulse : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
         //mainCamera = GameObject.FindWithTag("MainCamera");
         helper = GameObject.FindWithTag("Helper");
         capsuleslots = new List<Vector2>();
@@ -38,6 +40,8 @@ public class Repulse : MonoBehaviour
         capsuleslots.Add(new Vector2(-1.5f, -1.5f));
         capsuleslots.Add(new Vector2(-1.5f, 1.5f));
         capsuleslots.Add(new Vector2(1.5f, -1.5f));
+
+        Physics2D.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider2D>(), coll);
     }
 
     private void Update()

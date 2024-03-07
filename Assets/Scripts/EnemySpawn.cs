@@ -9,6 +9,7 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private float spawntime = 30f;
     private float currentwait = 0f;
     [SerializeField] private float spawndecay = 2f;
+    [SerializeField] private float minspawntime = 3f;
     private AudioSource spawnsound;
     bool pieceacquired = false;
 
@@ -16,7 +17,7 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnlocations = new List<Vector2>() {new Vector2(-40f, 15f), new Vector2(40f, 15f), new Vector2(40f, -15f), new Vector2(-40f, -15f)};
+        spawnlocations = new List<Vector2>() { new Vector2(-38f, -11.5f), new Vector2(-41f, 17f), new Vector2(41.9f, 16.7f), new Vector2(37.6f, -10.6f) };
         currentwait = spawntime;
         spawnsound = GetComponent<AudioSource>();        
     }
@@ -46,6 +47,10 @@ public class EnemySpawn : MonoBehaviour
                 if (spawntime >= 10)
                 {
                     spawntime -= spawndecay;
+                    if(spawntime < minspawntime)
+                    {
+                        spawntime = minspawntime;
+                    }
                 }
                 currentwait = spawntime;
             }

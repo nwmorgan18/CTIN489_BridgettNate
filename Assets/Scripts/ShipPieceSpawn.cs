@@ -9,18 +9,35 @@ public class ShipPieceSpawn : MonoBehaviour
     bool enoughkills;
     bool spawned;
     public GameObject shippiece;
+    private Vector2 spawnpos;
 
     public void AddKill(int numkilled)
     {
         deadenemies += numkilled;
     }
+
+    public int GetKills()
+    {
+        return deadenemies;
+    }
+
+    public void SetPieceLocation(Vector2 enemypos)
+    {
+        spawnpos = enemypos;
+    }
     
+    public int GetNeededKills()
+    {
+        return killsneeded;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         enoughkills = false;
         deadenemies = 0;
         spawned = false;
+        spawnpos = new Vector2();
     }
 
     // Update is called once per frame
@@ -33,6 +50,7 @@ public class ShipPieceSpawn : MonoBehaviour
 
         if(enoughkills && !spawned)
         {
+            shippiece.transform.position = spawnpos;
             shippiece.SetActive(true);
             spawned = true;
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShipPieceControl : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] public GameObject exitwall;
     private GameObject spawner;
     void Start()
     {
@@ -22,15 +23,7 @@ public class ShipPieceControl : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             spawner.GetComponent<EnemySpawn>().AcquirePiece();
-            /*
-            GameObject enemy;
-            do
-            {
-                enemy = GameObject.FindWithTag("Enemy");
-                Destroy(enemy);
-                enemy = GameObject.FindWithTag("Enemy");
-            } while (enemy != null);
-            */
+            exitwall.SetActive(false);
             Destroy(this.gameObject);
         }
     }

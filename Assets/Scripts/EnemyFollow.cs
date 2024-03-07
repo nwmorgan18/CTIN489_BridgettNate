@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class EnemyFollow : MonoBehaviour
 {
     //private Vector3 playerPosition;
     private GameObject player;
-    [SerializeField] private float moveSpeed = 0.1f;
+    [SerializeField] private float moveSpeed = 3.5f;
     Rigidbody2D rb;
     //Vector2 position = new Vector2(0f, 0f);
     Vector2 direction;
@@ -16,6 +17,7 @@ public class EnemyFollow : MonoBehaviour
     [SerializeField] private float invincibletime = 1f;
     private float currentlyinvincible = 0f;
     private GameObject spawner;
+    private NavMeshAgent agent;
 
 
 
@@ -26,14 +28,21 @@ public class EnemyFollow : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         damagesound = GetComponent<AudioSource>();
         spawner = GameObject.FindWithTag("Spawner");
+        agent = GetComponent <NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //agent.SetDestination(player.transform.position);
         if(currentlyinvincible > 0)
         {
             currentlyinvincible -= Time.deltaTime;
+            agent.speed = 0f;
+        }
+        else
+        {
+            agent.speed = moveSpeed;
         }
     }
     private void FixedUpdate()
@@ -59,11 +68,13 @@ public class EnemyFollow : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        /*
         if (other.gameObject.CompareTag("Player"))
         {
             string currentscene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentscene);
         }
+        */
         if(other.gameObject.CompareTag("Capsule") && currentlyinvincible <= 0f)
         {
             health -= 1;
@@ -73,6 +84,10 @@ public class EnemyFollow : MonoBehaviour
             if(health <= 0)
             {
                 spawner.GetComponent<ShipPieceSpawn>().AddKill(1);
+                if (spawner.GetComponent<ShipPieceSpawn>().GetKills() >= spawner.GetComponent<ShipPieceSpawn>().GetNeededKills())
+                {
+                    spawner.GetComponent<ShipPieceSpawn>().SetPieceLocation(this.transform.position);
+                }
                 Destroy(this.gameObject);
             }
         }
