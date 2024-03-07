@@ -59,13 +59,11 @@ public class EnemyFollow : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        /*
         if (other.gameObject.CompareTag("Player"))
         {
             string currentscene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentscene);
         }
-        */
         if(other.gameObject.CompareTag("Capsule") && currentlyinvincible <= 0f)
         {
             health -= 1;

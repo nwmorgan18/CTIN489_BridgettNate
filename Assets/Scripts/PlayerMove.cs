@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -18,7 +17,6 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float dodgetimermax = 1f;
     private AudioSource walksound;
     private bool walking;
-    
     //[SerializeField] private float walksoundcutoff = 1f;
 
     private Animator animator;
@@ -29,7 +27,6 @@ public class PlayerMove : MonoBehaviour
         ogspeed = movementspeed;
         walksound = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        
     }
 
     // Update is called once per frame
@@ -96,7 +93,7 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        rb.AddForce(direction * movementspeed);
+        rb.velocity = direction * movementspeed;
        
 
         if (rb.velocity.sqrMagnitude != 0)
