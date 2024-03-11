@@ -11,25 +11,27 @@ public class HelperIgnore : MonoBehaviour
     {
         coll = GetComponent<Collider2D>();
 
-        allignoretags = new List<string>(){ "Tree", "Player", "Enemy", "Wall"};
-    }
+        allignoretags = new List<string>(){ "Tree", "Player", "Enemy", "Wall", "Mushroom"};
 
-
-    // Update is called once per frame
-    void Update()
-    {
         for (int i = 0; i < allignoretags.Count; i++)
         {
             GameObject[] objs = GameObject.FindGameObjectsWithTag(allignoretags[i]);
             //GameObject obj = GameObject.FindWithTags(allignoretags[i]);
-            for(int j = 0; j < objs.Length; j++)
+            for (int j = 0; j < objs.Length; j++)
             {
-                if(objs[j] != null)
+                if (objs[j] != null)
                 {
                     Physics2D.IgnoreCollision(objs[j].GetComponent<Collider2D>(), coll);
                 }
             }
 
         }
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
