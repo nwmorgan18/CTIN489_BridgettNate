@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float movementspeed = 2f;
+    private GameObject Helper;
     private float ogspeed;
     private Rigidbody2D rb;
     private Vector2 direction;
@@ -27,7 +28,9 @@ public class PlayerMove : MonoBehaviour
         ogspeed = movementspeed;
         walksound = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+        Helper = GameObject.FindWithTag("Helper");
         Physics2D.IgnoreLayerCollision(0, 3, true);
+        Physics2D.IgnoreCollision(Helper.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     // Update is called once per frame

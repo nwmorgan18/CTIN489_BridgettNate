@@ -10,6 +10,7 @@ public class EnemySpawn : MonoBehaviour
     private float currentwait = 0f;
     [SerializeField] private float spawndecay = 2f;
     [SerializeField] private float minspawntime = 3f;
+    [SerializeField] GameObject helper;
     private AudioSource spawnsound;
     bool pieceacquired = false;
 
@@ -42,7 +43,9 @@ public class EnemySpawn : MonoBehaviour
                 Debug.Log("Spawn Enemy");
                 int randnum = Random.Range(0, spawnlocations.Count - 1);
                 transform.position = spawnlocations[randnum];
-                Instantiate(EnemyPrefab, this.gameObject.transform.position, Quaternion.identity);
+                GameObject newenemy = Instantiate(EnemyPrefab, this.gameObject.transform.position, Quaternion.identity);
+                
+                Physics2D.IgnoreCollision(helper.GetComponent<Collider2D>(), newenemy.GetComponent<Collider2D>());
                 spawnsound.Play();
                 if (spawntime >= 10)
                 {

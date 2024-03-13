@@ -88,6 +88,15 @@ public class Repulse : MonoBehaviour
             
         }
 
+        if (Input.GetKey("1"))
+        {
+            SceneManager.LoadScene("Level 1");
+        }
+        if (Input.GetKey("2"))
+        {
+            SceneManager.LoadScene("Level 2");
+        }
+
         if (Input.GetKeyUp("r"))
         {
             string currentscene = SceneManager.GetActiveScene().name;
