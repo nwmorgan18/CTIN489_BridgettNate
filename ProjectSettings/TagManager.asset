@@ -11,8 +11,6 @@ TagManager:
   - Tree
   - Capsule
   - Spawner
-  - Acid
-  - Mushroom
   layers:
   - Default
   - TransparentFX
