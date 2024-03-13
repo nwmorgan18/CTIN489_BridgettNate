@@ -3810,6 +3810,10 @@ PrefabInstance:
     - target: {fileID: 2104501507675870397, guid: 01e5bd5ade8af3140baef6b99cb5f854, type: 3}
       propertyPath: lowHealthSprite
       value: 
+      objectReference: {fileID: 21300000, guid: 9395b1e59e229ef4b83c44e627045a09, type: 3}
+    - target: {fileID: 2104501507675870397, guid: 01e5bd5ade8af3140baef6b99cb5f854, type: 3}
+      propertyPath: medHealthSprite
+      value: 
       objectReference: {fileID: 21300000, guid: ebf8a80482dceeb448017f37e2891591, type: 3}
     - target: {fileID: 2104501507675870397, guid: 01e5bd5ade8af3140baef6b99cb5f854, type: 3}
       propertyPath: fullHealthSprite
