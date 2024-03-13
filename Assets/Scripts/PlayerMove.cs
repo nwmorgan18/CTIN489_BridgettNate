@@ -96,8 +96,8 @@ public class PlayerMove : MonoBehaviour
 
         rb.AddForce(direction * movementspeed);
 
-
-        if (rb.velocity.sqrMagnitude != 0)
+        Debug.Log(rb.velocity.sqrMagnitude);
+        if (rb.velocity.sqrMagnitude >= 0.01)
         {
             if (!walking) {
                 animator.Play("Base Layer.walkingCycle");
