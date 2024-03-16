@@ -59,6 +59,18 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Poison"))
+        {
+            curhealth = maxhealth;
+            string currentscene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentscene);
+            curhealth = maxhealth;
+            Debug.Log("Swamped");
+        }
+    }
+
     private void UpdateHealthUI() {
         if (curhealth == 3) {
             healthImage.sprite = fullHealthSprite;
