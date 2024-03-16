@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour
 
     // UI stuff
     public Sprite fullHealthSprite;
+    public Sprite medHealthSprite;
     public Sprite lowHealthSprite;
     public UnityEngine.UI.Image healthImage;
 
@@ -58,11 +59,26 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Poison"))
+        {
+            curhealth = maxhealth;
+            string currentscene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentscene);
+            curhealth = maxhealth;
+            Debug.Log("Swamped");
+        }
+    }
+
     private void UpdateHealthUI() {
-        if (curhealth > 1) {
+        if (curhealth == 3) {
             healthImage.sprite = fullHealthSprite;
         }
-        else {
+        else if (curhealth == 2) {
+            healthImage.sprite = medHealthSprite;
+        }
+        else if (curhealth == 3) {
             healthImage.sprite = lowHealthSprite;
         }
     }
