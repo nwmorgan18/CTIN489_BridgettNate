@@ -13,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
     private float curtime = 0f;
     [SerializeField] float shakeintensity = 5f;
     [SerializeField] float shaketime = 0.1f;
+    [SerializeField] GameObject TelemetryManager;
+
 
     // UI stuff
     public Sprite fullHealthSprite;
@@ -35,6 +37,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (curhealth <= 0)
         {
+            //TelemetryManager.GetComponent<PlayerMetricRecord>().PlayerDied();
+
             curhealth = maxhealth;
             string currentscene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentscene);

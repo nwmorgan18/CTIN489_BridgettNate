@@ -81,7 +81,7 @@ public class EnemyFollow : MonoBehaviour
         if(other.gameObject.CompareTag("Capsule") && currentlyinvincible <= 0f)
         {
             health -= 1;
-            Debug.Log("Enemy Hit");
+            //Debug.Log("Enemy Hit");
             currentlyinvincible = invincibletime;
             damagesound.Play();
             if(health <= 0)

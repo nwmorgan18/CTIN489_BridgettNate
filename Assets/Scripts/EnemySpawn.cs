@@ -39,7 +39,7 @@ public class EnemySpawn : MonoBehaviour
 
             if (currentwait <= 0)
             {
-                Debug.Log("Spawn Enemy");
+                //Debug.Log("Spawn Enemy");
                 int randnum = Random.Range(0, spawnlocations.Count - 1);
                 transform.position = spawnlocations[randnum];
                 Instantiate(EnemyPrefab, this.gameObject.transform.position, Quaternion.identity);
