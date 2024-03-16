@@ -13,6 +13,7 @@ public class LizardMove : MonoBehaviour
     private bool charging = false;
     private bool lunging = false;
     private Vector2 lungedir;
+    private Rigidbody2D rb;
 
 
     private float currenttime;
@@ -22,7 +23,7 @@ public class LizardMove : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         currenttime = aimtime;
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -39,7 +40,8 @@ public class LizardMove : MonoBehaviour
             lungedir = player.transform.position - transform.position;
             lungedir.Normalize();
 
-            transform.LookAt(player.transform.position);
+            transform.LookAt(player.transform.position, new Vector3(0,0,1));
+            
             if (currenttime <= 0)
             {
                 aiming = false;
@@ -61,7 +63,7 @@ public class LizardMove : MonoBehaviour
         else if (lunging)
         {
             //dont rotate, move in direction of 
-            this.GetComponent<Rigidbody2D>().AddForce(transform.forward * speed);
+            rb.AddForce(transform.forward * speed);
 
             if(currenttime <= 0)
             {
@@ -70,5 +72,8 @@ public class LizardMove : MonoBehaviour
                 aiming = true;
             }
         }
+
+        //Vector3 temprot = transform.rotation;
+
     }
 }
