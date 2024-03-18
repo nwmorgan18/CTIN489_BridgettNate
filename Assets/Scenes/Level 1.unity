@@ -4060,7 +4060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833256648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2642987, y: 35.44476, z: 0.7942985}
+  m_LocalPosition: {x: 0.6, y: 35.5, z: 0.7942985}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4108,7 +4108,7 @@ SpriteRenderer:
   m_SortingLayerID: -1017941571
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 63d44a34f19c0d94b8fee0ccd3423108, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d7eca709a65302b4a9bdd45d5491c5f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4116,7 +4116,7 @@ SpriteRenderer:
   m_Size: {x: 6.4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &872819372
@@ -4277,7 +4277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa17f69592797b408159ec4001d97d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killsneeded: 7
+  killsneeded: 1
   shippiece: {fileID: 299907709}
 --- !u!1 &873157876
 GameObject:
@@ -4509,6 +4509,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 475288060}
     m_Modifications:
+    - target: {fileID: 1282370950989574912, guid: ec93fb8a205cb074cab2e02beac60604, type: 3}
+      propertyPath: capsulenum
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1282370950989574915, guid: ec93fb8a205cb074cab2e02beac60604, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -7304,7 +7308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628417836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.8, y: 26.5, z: 0}
+  m_LocalPosition: {x: 5.2, y: 30.1, z: 0}
   m_LocalScale: {x: 20.282, y: 6.2426996, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
