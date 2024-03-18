@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 1821132}
   - component: {fileID: 1821137}
   - component: {fileID: 1821138}
+  - component: {fileID: 1821139}
   m_Layer: 0
   m_Name: Helper
   m_TagString: Helper
@@ -286,11 +287,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a94622261d88a4189a86b94db585b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite1: {fileID: 21300000, guid: d353165486f7b244d8591c88a2ec8424, type: 3}
-  sprite2: {fileID: 21300000, guid: a3cb04b76cf30d549a3a9a6781c0fc92, type: 3}
-  sprite3: {fileID: 0}
-  sprite4: {fileID: 0}
-  switchInterval: 0.1
+--- !u!95 &1821139
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821131}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1eb08d690ccf18c40b2abc8c661a3965, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &10693961
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -94,6 +94,11 @@ public class EnemyFollow : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+        // for animation attack
+        if (other.gameObject.CompareTag("Player")) 
+        {
+            animator.Play("Base Layer.Enemy1Bite");
+        }
     }
 
     private void flipSprite(bool left) {

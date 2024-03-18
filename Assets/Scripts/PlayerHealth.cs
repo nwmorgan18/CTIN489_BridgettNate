@@ -82,7 +82,7 @@ public class PlayerHealth : MonoBehaviour
         else if (curhealth == 2) {
             healthImage.sprite = medHealthSprite;
         }
-        else if (curhealth == 3) {
+        else if (curhealth == 1) {
             healthImage.sprite = lowHealthSprite;
         }
     }
