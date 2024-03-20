@@ -7506,6 +7506,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3362292325059871364, guid: f0744415b95fb6543a7cc3c3a8cf25f1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3362292325059871365, guid: f0744415b95fb6543a7cc3c3a8cf25f1, type: 3}
       propertyPath: enemyBite
       value: 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IslandIgnore : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class IslandIgnore : MonoBehaviour
             // Disable the swamp trigger when the player enters the island
             //swampCollider.isTrigger = false;
             swampCollider.gameObject.SetActive(false);
+            numBridges++;
             Debug.Log("Island");
         }
     }
@@ -29,7 +31,13 @@ public class IslandIgnore : MonoBehaviour
         if (other.CompareTag("PlayerFeet"))
         {
             // Re-enable the swamp trigger when the player leaves the island
-            swampCollider.isTrigger = true;
+            swampCollider.gameObject.SetActive(true);
+            numBridges--;
+
+            if (numBridges == 0) {
+                string currentscene = SceneManager.GetActiveScene().name;
+                SceneManager.LoadScene(currentscene);
+            }
         }
     }
 }
