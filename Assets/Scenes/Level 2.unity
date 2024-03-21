@@ -1805,6 +1805,7 @@ GameObject:
   - component: {fileID: 262284380}
   - component: {fileID: 262284379}
   - component: {fileID: 262284381}
+  - component: {fileID: 262284382}
   m_Layer: 0
   m_Name: Bridge (3)
   m_TagString: Untagged
@@ -1892,6 +1893,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swamp: {fileID: 1037595565}
+--- !u!61 &262284382
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262284378}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.2, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.8, y: 1.8}
+    newSize: {x: 1.8, y: 1.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.9, y: 1.8}
+  m_EdgeRadius: 0
 --- !u!1 &312361535
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,6 +3067,7 @@ GameObject:
   - component: {fileID: 815717285}
   - component: {fileID: 815717284}
   - component: {fileID: 815717286}
+  - component: {fileID: 815717287}
   m_Layer: 0
   m_Name: Bridge (2)
   m_TagString: Untagged
@@ -3127,6 +3155,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swamp: {fileID: 1037595565}
+--- !u!61 &815717287
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815717283}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.8, y: 1.8}
+    newSize: {x: 1.8, y: 1.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.8}
+  m_EdgeRadius: 0
 --- !u!1 &823223122
 GameObject:
   m_ObjectHideFlags: 0
@@ -7443,7 +7497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9221c4cc25e654ca185928622f604c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swamp: {fileID: 1343896253}
+  swamp: {fileID: 1037595565}
 --- !u!1001 &1802897731
 PrefabInstance:
   m_ObjectHideFlags: 0
