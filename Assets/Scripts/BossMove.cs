@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
-public class BossFollow : MonoBehaviour
+public class BossMove : MonoBehaviour
 {
-    public Transform target; // The target to follow (the character)
     //private Vector3 playerPosition;
     private GameObject player;
     [SerializeField] private float moveSpeed = 3.5f;
@@ -31,7 +30,7 @@ public class BossFollow : MonoBehaviour
         agent = GetComponent <NavMeshAgent>();
         animator = GetComponent<Animator>();
         // start walking animation
-        animator.Play("Base Layer.Enemy1Walk");
+        // animator.Play("Base Layer.Enemy1Walk");
     }
 
     // Update is called once per frame
@@ -52,11 +51,9 @@ public class BossFollow : MonoBehaviour
     {
         if(currentlyinvincible <= 0)
         {
-            direction = (target.position - transform.position).normalized;
-
+            direction = player.transform.position - this.transform.position;
             //rb.MovePosition(position);
-            transform.Translate(direction * moveSpeed * Time.deltaTime);
-
+            rb.velocity = direction.normalized * moveSpeed;
 
             if (direction.x > 0)
             {
@@ -96,6 +93,11 @@ public class BossFollow : MonoBehaviour
                 }
                 Destroy(this.gameObject);
             }
+        }
+        // for animation attack
+        if (other.gameObject.CompareTag("Player")) 
+        {
+            // animator.Play("Base Layer.Enemy1Bite");
         }
     }
 
