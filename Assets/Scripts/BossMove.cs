@@ -49,22 +49,19 @@ public class BossMove : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(currentlyinvincible <= 0)
-        {
-            direction = player.transform.position - this.transform.position;
-            //rb.MovePosition(position);
-            rb.velocity = direction.normalized * moveSpeed;
+        direction = player.transform.position - this.transform.position;
+        //rb.MovePosition(position);
+        rb.velocity = direction.normalized * moveSpeed;
 
-            if (direction.x > 0)
-            {
-                // flip horizontally right
-                flipSprite(false);
-            }
-            else if (direction.x < 0)
-            {
-                // flip left aka revert to original
-                flipSprite(true);
-            }
+        if (direction.x > 0)
+        {
+            // flip horizontally right
+            flipSprite(false);
+        }
+        else if (direction.x < 0)
+        {
+            // flip left aka revert to original
+            flipSprite(true);
         }
     }
 
@@ -83,14 +80,16 @@ public class BossMove : MonoBehaviour
             health -= 1;
             //Debug.Log("Enemy Hit");
             currentlyinvincible = invincibletime;
-            damagesound.Play();
+            //damagesound.Play();
             if(health <= 0)
             {
+                /*
                 spawner.GetComponent<ShipPieceSpawn>().AddKill(1);
                 if (spawner.GetComponent<ShipPieceSpawn>().GetKills() >= spawner.GetComponent<ShipPieceSpawn>().GetNeededKills())
                 {
                     spawner.GetComponent<ShipPieceSpawn>().SetPieceLocation(this.transform.position);
                 }
+                */
                 Destroy(this.gameObject);
             }
         }
