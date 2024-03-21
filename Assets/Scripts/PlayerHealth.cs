@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float shakeintensity = 5f;
     [SerializeField] float shaketime = 0.1f;
     [SerializeField] GameObject TelemetryManager;
+    private Animator animator;
 
 
     // UI stuff
@@ -27,6 +28,8 @@ public class PlayerHealth : MonoBehaviour
     {
         curhealth = maxhealth;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -60,6 +63,7 @@ public class PlayerHealth : MonoBehaviour
             curtime = invicibletime;
             CameraShake.Instance.Shake(shakeintensity, shaketime);
             Debug.Log("Player Hit");
+            animator.Play("Base Layer.AstronautHurt");
         }
     }
 
