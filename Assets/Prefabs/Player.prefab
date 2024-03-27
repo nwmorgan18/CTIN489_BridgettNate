@@ -277,6 +277,7 @@ MonoBehaviour:
   invicibletime: 1
   shakeintensity: 5
   shaketime: 0.1
+  TelemetryManager: {fileID: 0}
   fullHealthSprite: {fileID: 0}
   medHealthSprite: {fileID: 0}
   lowHealthSprite: {fileID: 0}
