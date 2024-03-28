@@ -19,6 +19,10 @@ public class EnemyFollow : MonoBehaviour
     private GameObject spawner;
     private NavMeshAgent agent;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private float colorDuration = 0.5f;
+    private float timer = 0f;
+    private bool justHit;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +35,9 @@ public class EnemyFollow : MonoBehaviour
         animator = GetComponent<Animator>();
         // start walking animation
         animator.Play("Base Layer.Enemy1Walk");
+        // sprite renderer for color change
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        justHit = false;
     }
 
     // Update is called once per frame
@@ -49,6 +56,10 @@ public class EnemyFollow : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (justHit) {
+            changeColor();
+        }
+        
         if(currentlyinvincible <= 0)
         {
             direction = player.transform.position - this.transform.position;
@@ -84,6 +95,8 @@ public class EnemyFollow : MonoBehaviour
             //Debug.Log("Enemy Hit");
             currentlyinvincible = invincibletime;
             damagesound.Play();
+            changeColor();
+            justHit = true;
             if(health <= 0)
             {
                 spawner.GetComponent<ShipPieceSpawn>().AddKill(1);
@@ -113,4 +126,17 @@ public class EnemyFollow : MonoBehaviour
         // Apply the new scale to the sprite
         transform.localScale = scale;
     }
+
+    private void changeColor() {
+        spriteRenderer.color = Color.red;
+
+        timer += Time.deltaTime;
+
+        if (timer >= colorDuration) {
+            spriteRenderer.color = Color.white;
+            timer = 0f;
+            justHit = false;
+        }
+    }
 }
+
