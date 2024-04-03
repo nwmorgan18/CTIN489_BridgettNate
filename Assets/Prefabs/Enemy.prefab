@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5992412266755601576}
   - component: {fileID: 9058748191082834653}
   - component: {fileID: -8485899702710101}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -142,6 +142,7 @@ MonoBehaviour:
   moveSpeed: 5
   health: 3
   invincibletime: 1
+  colorDuration: 0.5
 --- !u!82 &5992412266755601576
 AudioSource:
   m_ObjectHideFlags: 0
