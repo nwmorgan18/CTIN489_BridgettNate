@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float colorDuration = 0.5f;
     private float timer = 0f;
     private bool justHit;
+    private bool isDead;
 
     // UI stuff
     public Sprite fullHealthSprite;
@@ -29,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isDead = false;
         curhealth = maxhealth;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -52,10 +54,8 @@ public class PlayerHealth : MonoBehaviour
         {
             //TelemetryManager.GetComponent<PlayerMetricRecord>().PlayerDied();
 
-            curhealth = maxhealth;
-            string currentscene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentscene);
-            curhealth = maxhealth;
+            Die();
+
         }
         if (curtime > 0)
         {
@@ -65,6 +65,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (isDead) {
+            return;
+        }
         if (other.gameObject.CompareTag("Enemy") && curtime <= 0f)
         {
             justHit = true;
@@ -75,12 +78,15 @@ public class PlayerHealth : MonoBehaviour
             curtime = invicibletime;
             CameraShake.Instance.Shake(shakeintensity, shaketime);
             Debug.Log("Player Hit");
-            animator.Play("Base Layer.AstronautHurt");
+            // animator.Play("Hurt.AstronautHurt");
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (isDead) {
+            return;
+        }
         if (other.gameObject.CompareTag("Poison"))
         {
             curhealth = maxhealth;
@@ -92,6 +98,9 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void UpdateHealthUI() {
+        if (isDead) {
+            return;
+        }
         if (curhealth == 3) {
             healthImage.sprite = fullHealthSprite;
         }
@@ -113,5 +122,30 @@ public class PlayerHealth : MonoBehaviour
             timer = 0f;
             justHit = false;
         }
+    }
+
+    private IEnumerator DieCoroutine() {
+        
+    // Play death animation
+    animator.Play("Base Layer.AstronautDie");
+
+    // Wait for the length of the death animation
+    yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+    // Restart the scene
+    isDead = false;
+    curhealth = maxhealth;
+    string currentscene = SceneManager.GetActiveScene().name;
+    SceneManager.LoadScene(currentscene);
+    curhealth = maxhealth;
+}
+
+    private void Die() {
+        if (isDead) {
+            return;
+        }
+        isDead = true;
+
+        StartCoroutine(DieCoroutine());
     }
 }
