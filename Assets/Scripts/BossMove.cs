@@ -23,6 +23,8 @@ public class BossMove : MonoBehaviour
     [SerializeField] private float colorDuration = 0.5f;
     private float timer = 0f;
     private bool justHit;
+    public int targetSceneBuildIndex; // Name of the scene to transition to
+
 
     // Start is called before the first frame update
     void Start()
@@ -103,6 +105,8 @@ public class BossMove : MonoBehaviour
                 }
                 */
                 Destroy(this.gameObject);
+                SceneManager.LoadScene(targetSceneBuildIndex); // Load the specified scene
+
             }
         }
         // for animation attack
