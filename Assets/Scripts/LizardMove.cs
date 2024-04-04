@@ -64,7 +64,7 @@ public class LizardMove : MonoBehaviour
                     spawner.GetComponent<ShipPieceSpawn>().SetPieceLocation(this.transform.position);
                 }
                 */
-                //Debug.Log("Lizard Die");
+                Debug.Log("Lizard Die");
                 Die();
             }
         }
@@ -155,6 +155,7 @@ public class LizardMove : MonoBehaviour
         
     // Play death animation
     animator.Play("Base Layer.LizardDie");
+        Debug.Log("Play Lizard death animation");
 
     // Wait for the length of the death animation
     yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
