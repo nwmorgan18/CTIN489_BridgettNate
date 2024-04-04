@@ -6616,11 +6616,11 @@ PrefabInstance:
     - target: {fileID: 2104501507675870397, guid: 01e5bd5ade8af3140baef6b99cb5f854, type: 3}
       propertyPath: lowHealthSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9395b1e59e229ef4b83c44e627045a09, type: 3}
+      objectReference: {fileID: 21300000, guid: 7d15a32128e299e429396d1dccfbf705, type: 3}
     - target: {fileID: 2104501507675870397, guid: 01e5bd5ade8af3140baef6b99cb5f854, type: 3}
       propertyPath: medHealthSprite
       value: 
-      objectReference: {fileID: 21300000, guid: ebf8a80482dceeb448017f37e2891591, type: 3}
+      objectReference: {fileID: 21300000, guid: 7d494ed2cb29529438536987bad9d5ae, type: 3}
     - target: {fileID: 2104501507675870397, guid: 01e5bd5ade8af3140baef6b99cb5f854, type: 3}
       propertyPath: TelemetryManager
       value: 
