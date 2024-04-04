@@ -19,6 +19,12 @@ public class BossMove : MonoBehaviour
     private GameObject spawner;
     private NavMeshAgent agent;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private float colorDuration = 0.5f;
+    private float timer = 0f;
+    private bool justHit;
+    public int targetSceneBuildIndex; // Name of the scene to transition to
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +37,17 @@ public class BossMove : MonoBehaviour
         animator = GetComponent<Animator>();
         // start walking animation
         // animator.Play("Base Layer.Enemy1Walk");
+        // sprite renderer for color change
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        justHit = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (justHit) {
+            changeColor();
+        }
         //agent.SetDestination(player.transform.position);
         if(currentlyinvincible > 0)
         {
@@ -77,6 +89,8 @@ public class BossMove : MonoBehaviour
 
         if(other.gameObject.CompareTag("Capsule") && currentlyinvincible <= 0f)
         {
+            justHit = true;
+            changeColor();
             health -= 1;
             //Debug.Log("Enemy Hit");
             currentlyinvincible = invincibletime;
@@ -91,6 +105,8 @@ public class BossMove : MonoBehaviour
                 }
                 */
                 Destroy(this.gameObject);
+                SceneManager.LoadScene(targetSceneBuildIndex); // Load the specified scene
+
             }
         }
         // for animation attack
@@ -111,5 +127,17 @@ public class BossMove : MonoBehaviour
 
         // Apply the new scale to the sprite
         transform.localScale = scale;
+    }
+
+    private void changeColor() {
+        spriteRenderer.color = Color.red;
+
+        timer += Time.deltaTime;
+
+        if (timer >= colorDuration) {
+            spriteRenderer.color = Color.white;
+            timer = 0f;
+            justHit = false;
+        }
     }
 }
