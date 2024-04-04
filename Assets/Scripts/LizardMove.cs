@@ -72,6 +72,9 @@ public class LizardMove : MonoBehaviour
         
         private void FixedUpdate() {
             // Debug.Log("fixedUpdate");
+            if (!isDead) {
+                animator.Play("Base Layer.LizardIdle");
+            }
             if (justHit) {
                 changeColor();
             }
