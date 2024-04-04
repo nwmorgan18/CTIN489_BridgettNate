@@ -6230,7 +6230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc471a515d752a429cb0afe6baee0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneBuildIndex: 2
+  targetSceneBuildIndex: 3
   TelemetryManager: {fileID: 823223122}
 --- !u!61 &1524677132
 BoxCollider2D:
