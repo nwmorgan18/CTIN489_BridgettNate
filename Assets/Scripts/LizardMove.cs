@@ -23,6 +23,8 @@ public class LizardMove : MonoBehaviour
     [SerializeField] private float colorDuration = 0.5f;
     private float timer = 0f;
     private bool justHit;
+    Animator animator;
+    bool isDead;
 
     private float currenttime;
 
@@ -36,6 +38,9 @@ public class LizardMove : MonoBehaviour
         // sprite renderer for color change
         spriteRenderer = GetComponent<SpriteRenderer>();
         justHit = false;
+        animator = GetComponent<Animator>();
+
+        isDead = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -60,8 +65,7 @@ public class LizardMove : MonoBehaviour
                 }
                 */
                 //Debug.Log("Lizard Die");
-                shippiece.GetComponent<Level2ShipPieceControl>().KillLizard();
-                Destroy(this.gameObject);
+                Die();
             }
         }
     }
@@ -145,5 +149,28 @@ public class LizardMove : MonoBehaviour
             timer = 0f;
             justHit = false;
         }
+    }
+
+    private IEnumerator DieCoroutine() {
+        
+    // Play death animation
+    animator.Play("Base Layer.LizardDie");
+
+    // Wait for the length of the death animation
+    yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+    shippiece.GetComponent<Level2ShipPieceControl>().KillLizard();
+    Destroy(this.gameObject);
+    isDead = false;
+
+}
+
+    private void Die() {
+        if (isDead) {
+            return;
+        }
+        isDead = true;
+
+        StartCoroutine(DieCoroutine());
     }
 }

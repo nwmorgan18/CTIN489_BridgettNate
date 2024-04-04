@@ -23,6 +23,7 @@ public class EnemyFollow : MonoBehaviour
     [SerializeField] private float colorDuration = 0.5f;
     private float timer = 0f;
     private bool justHit;
+    bool isDead;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class EnemyFollow : MonoBehaviour
         // sprite renderer for color change
         spriteRenderer = GetComponent<SpriteRenderer>();
         justHit = false;
+        isDead = false;
     }
 
     // Update is called once per frame
@@ -99,12 +101,7 @@ public class EnemyFollow : MonoBehaviour
             justHit = true;
             if(health <= 0)
             {
-                spawner.GetComponent<ShipPieceSpawn>().AddKill(1);
-                if (spawner.GetComponent<ShipPieceSpawn>().GetKills() >= spawner.GetComponent<ShipPieceSpawn>().GetNeededKills())
-                {
-                    spawner.GetComponent<ShipPieceSpawn>().SetPieceLocation(this.transform.position);
-                }
-                Destroy(this.gameObject);
+                Die();
             }
         }
         // for animation attack
@@ -137,6 +134,35 @@ public class EnemyFollow : MonoBehaviour
             timer = 0f;
             justHit = false;
         }
+    }
+
+    private IEnumerator DieCoroutine() {
+        
+        // Play death animation
+        animator.Play("Base Layer.WolfDie");
+
+        // Wait for the length of the death animation
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        // old stuff
+        spawner.GetComponent<ShipPieceSpawn>().AddKill(1);
+        if (spawner.GetComponent<ShipPieceSpawn>().GetKills() >= spawner.GetComponent<ShipPieceSpawn>().GetNeededKills())
+        {
+            spawner.GetComponent<ShipPieceSpawn>().SetPieceLocation(this.transform.position);
+        }
+        Destroy(this.gameObject);
+
+        isDead = false;
+
+    }
+
+    private void Die() {
+        if (isDead) {
+            return;
+        }
+        isDead = true;
+
+        StartCoroutine(DieCoroutine());
     }
 }
 
