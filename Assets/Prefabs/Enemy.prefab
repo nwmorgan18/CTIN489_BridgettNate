@@ -142,7 +142,7 @@ MonoBehaviour:
   moveSpeed: 5
   health: 3
   invincibletime: 1
-  colorDuration: 0.5
+  colorDuration: 0.25
 --- !u!82 &5992412266755601576
 AudioSource:
   m_ObjectHideFlags: 0

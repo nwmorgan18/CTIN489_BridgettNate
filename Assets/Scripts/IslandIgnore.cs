@@ -11,7 +11,7 @@ public class IslandIgnore : MonoBehaviour
 
     void Start() {
         swampCollider = swamp.GetComponent<Collider2D>();
-        Debug.Log(gameObject.name);
+        // Debug.Log(gameObject.name);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -22,7 +22,7 @@ public class IslandIgnore : MonoBehaviour
             //swampCollider.isTrigger = false;
             swampCollider.gameObject.SetActive(false);
             numBridges++;
-            Debug.Log("Island");
+            // Debug.Log("Island");
         }
     }
 

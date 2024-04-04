@@ -19,7 +19,10 @@ public class LizardMove : MonoBehaviour
     [SerializeField] private float invincibletime = 1f;
     private float currentlyinvincible = 0f;
     [SerializeField] GameObject shippiece;
-
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private float colorDuration = 0.5f;
+    private float timer = 0f;
+    private bool justHit;
 
     private float currenttime;
 
@@ -29,12 +32,20 @@ public class LizardMove : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         currenttime = aimtime;
         rb = GetComponent<Rigidbody2D>();
+
+        // sprite renderer for color change
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        justHit = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Capsule") && currentlyinvincible <= 0f)
         {
+            // changing color to red
+            justHit = true;
+            changeColor();
+
             //Debug.Log("Lizard Hit");
             health -= 1;
             currentlyinvincible = invincibletime;
@@ -55,10 +66,17 @@ public class LizardMove : MonoBehaviour
         }
     }
         
+        private void FixedUpdate() {
+            // Debug.Log("fixedUpdate");
+            if (justHit) {
+                changeColor();
+            }
+        }
 
         // Update is called once per frame
         void Update()
-    {
+        {  
+
         if (currentlyinvincible > 0)
         {
             currentlyinvincible -= Time.deltaTime;
@@ -115,5 +133,17 @@ public class LizardMove : MonoBehaviour
 
         //Vector3 temprot = transform.rotation;
 
+    }
+
+    private void changeColor() {
+        spriteRenderer.color = Color.red;
+
+        timer += Time.deltaTime;
+
+        if (timer >= colorDuration) {
+            spriteRenderer.color = Color.white;
+            timer = 0f;
+            justHit = false;
+        }
     }
 }

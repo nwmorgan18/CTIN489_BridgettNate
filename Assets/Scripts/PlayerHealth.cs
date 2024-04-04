@@ -15,7 +15,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float shaketime = 0.1f;
     [SerializeField] GameObject TelemetryManager;
     private Animator animator;
-
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private float colorDuration = 0.5f;
+    private float timer = 0f;
+    private bool justHit;
 
     // UI stuff
     public Sprite fullHealthSprite;
@@ -30,11 +33,18 @@ public class PlayerHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
+        // sprite renderer for color change
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        justHit = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (justHit) {
+            changeColor();
+        }
         // update UI
         UpdateHealthUI();
 
@@ -57,6 +67,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && curtime <= 0f)
         {
+            justHit = true;
+            changeColor();
             curhealth--;
             Vector2 direction = transform.position - other.gameObject.transform.position;
             rb.AddForce(direction.normalized * pushback);
@@ -88,6 +100,18 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (curhealth == 1) {
             healthImage.sprite = lowHealthSprite;
+        }
+    }
+
+    private void changeColor() {
+        spriteRenderer.color = Color.red;
+
+        timer += Time.deltaTime;
+
+        if (timer >= colorDuration) {
+            spriteRenderer.color = Color.white;
+            timer = 0f;
+            justHit = false;
         }
     }
 }

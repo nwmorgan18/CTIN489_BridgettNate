@@ -228,3 +228,4 @@ MonoBehaviour:
   health: 2
   invincibletime: 1
   shippiece: {fileID: 0}
+  colorDuration: 0.25
