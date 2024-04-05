@@ -93,6 +93,10 @@ public class Repulse : MonoBehaviour
             string currentscene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentscene);
         }
+        if (Input.GetKeyUp("m"))
+        {
+            SceneManager.LoadScene("Start");
+        }
         if (Input.GetKey("escape"))
         {
             Application.Quit();

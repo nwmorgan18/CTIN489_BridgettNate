@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LizardMove : MonoBehaviour
 {
@@ -24,13 +25,19 @@ public class LizardMove : MonoBehaviour
     private float timer = 0f;
     private bool justHit;
     Animator animator;
-    bool isDead;
+    private bool isDead;
+    private bool islevel3;
 
     private float currenttime;
 
     // Start is called before the first frame update
     void Start()
     {
+        string currentscene = SceneManager.GetActiveScene().name;
+        if (currentscene == "Level 3 (Boss)")
+        {
+            islevel3 = true;
+        }
         player = GameObject.FindWithTag("Player");
         currenttime = aimtime;
         rb = GetComponent<Rigidbody2D>();
@@ -156,18 +163,22 @@ public class LizardMove : MonoBehaviour
 
     private IEnumerator DieCoroutine() {
         
-    // Play death animation
-    animator.Play("Base Layer.LizardDie");
-        Debug.Log("Play Lizard death animation");
+        // Play death animation
+        animator.Play("Base Layer.LizardDie");
+        //Debug.Log("Play Lizard death animation");
 
-    // Wait for the length of the death animation
-    yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        // Wait for the length of the death animation
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
-    shippiece.GetComponent<Level2ShipPieceControl>().KillLizard();
-    Destroy(this.gameObject);
-    isDead = false;
+        if (!islevel3)
+        {
+            shippiece.GetComponent<Level2ShipPieceControl>().KillLizard();
+        }
+  
+        Destroy(this.gameObject);
+        isDead = false;
 
-}
+    }
 
     private void Die() {
         if (isDead) {

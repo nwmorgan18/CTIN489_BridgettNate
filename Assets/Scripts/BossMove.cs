@@ -24,6 +24,7 @@ public class BossMove : MonoBehaviour
     private float timer = 0f;
     private bool justHit;
     public int targetSceneBuildIndex; // Name of the scene to transition to
+    [SerializeField] private GameObject shippiece;
 
 
     // Start is called before the first frame update
@@ -61,6 +62,7 @@ public class BossMove : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        /*
         direction = player.transform.position - this.transform.position;
         //rb.MovePosition(position);
         rb.velocity = direction.normalized * moveSpeed;
@@ -75,6 +77,7 @@ public class BossMove : MonoBehaviour
             // flip left aka revert to original
             flipSprite(true);
         }
+        */
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -104,8 +107,9 @@ public class BossMove : MonoBehaviour
                     spawner.GetComponent<ShipPieceSpawn>().SetPieceLocation(this.transform.position);
                 }
                 */
+                shippiece.GetComponent<Level3ShipPieceSpawn>().KillBoss();
                 Destroy(this.gameObject);
-                SceneManager.LoadScene(targetSceneBuildIndex); // Load the specified scene
+                //SceneManager.LoadScene(targetSceneBuildIndex); // Load the specified scene
 
             }
         }

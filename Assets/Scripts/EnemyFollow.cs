@@ -24,10 +24,17 @@ public class EnemyFollow : MonoBehaviour
     private float timer = 0f;
     private bool justHit;
     bool isDead;
+    bool islevel3 = false;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        string currentscene = SceneManager.GetActiveScene().name;
+        if(currentscene == "Level 3 (Boss)")
+        {
+            islevel3 = true;
+        }
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
         damagesound = GetComponent<AudioSource>();
@@ -101,6 +108,7 @@ public class EnemyFollow : MonoBehaviour
             justHit = true;
             if(health <= 0)
             {
+                Debug.Log("Wolf Die");
                 Die();
             }
         }
@@ -145,11 +153,16 @@ public class EnemyFollow : MonoBehaviour
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
         // old stuff
-        spawner.GetComponent<ShipPieceSpawn>().AddKill(1);
-        if (spawner.GetComponent<ShipPieceSpawn>().GetKills() >= spawner.GetComponent<ShipPieceSpawn>().GetNeededKills())
+        if (!islevel3)
         {
-            spawner.GetComponent<ShipPieceSpawn>().SetPieceLocation(this.transform.position);
+            spawner.GetComponent<ShipPieceSpawn>().AddKill(1);
+            if (spawner.GetComponent<ShipPieceSpawn>().GetKills() >= spawner.GetComponent<ShipPieceSpawn>().GetNeededKills())
+            {
+                spawner.GetComponent<ShipPieceSpawn>().SetPieceLocation(this.transform.position);
+            }
+            spawner.GetComponent<EnemySpawn>().KillFirst();
         }
+
         Destroy(this.gameObject);
 
         isDead = false;
