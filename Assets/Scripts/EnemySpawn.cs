@@ -13,6 +13,7 @@ public class EnemySpawn : MonoBehaviour
     private AudioSource spawnsound;
     bool pieceacquired = false;
     bool firstdead = false;
+    int timesspawned = 0;
 
    
     // Start is called before the first frame update
@@ -36,28 +37,26 @@ public class EnemySpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (firstdead)
+        if (firstdead && timesspawned<2 && !pieceacquired)
         {
-            if (!pieceacquired)
+            if (currentwait > 0)
             {
-                if (currentwait > 0)
-                {
-                    currentwait -= Time.deltaTime;
-                }
+                currentwait -= Time.deltaTime;
+            }
 
-                if (currentwait <= 0)
+            if (currentwait <= 0)
+            {
+                //Debug.Log("Spawn Enemy");
+                for (int i =0;i< spawnlocations.Count; i++)
                 {
-                    //Debug.Log("Spawn Enemy");
-                    for (int i =0;i< spawnlocations.Count; i++)
-                    {
-                        //int randnum = Random.Range(0, spawnlocations.Count - 1);
-                        transform.position = spawnlocations[i];
-                        Instantiate(EnemyPrefab, this.gameObject.transform.position, Quaternion.identity);
-                    }
-                    spawnsound.Play();
-                  
-                    currentwait = spawntime;
+                    //int randnum = Random.Range(0, spawnlocations.Count - 1);
+                    transform.position = spawnlocations[i];
+                    Instantiate(EnemyPrefab, this.gameObject.transform.position, Quaternion.identity);
                 }
+                spawnsound.Play();
+                timesspawned++;
+                  
+                currentwait = spawntime;
             }
         }
     }
