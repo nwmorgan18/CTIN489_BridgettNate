@@ -17,6 +17,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float dodgetimermax = 1f;
     private AudioSource walksound;
     private bool walking;
+    private bool dead;
     //[SerializeField] private float walksoundcutoff = 1f;
 
     private Animator animator;
@@ -28,6 +29,7 @@ public class PlayerMove : MonoBehaviour
         walksound = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         Physics2D.IgnoreLayerCollision(0, 3, true);
+        dead = false;
     }
 
     // Update is called once per frame
@@ -94,7 +96,11 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-        rb.AddForce(direction * movementspeed);
+        if (!dead)
+        {
+            rb.AddForce(direction * movementspeed);
+        }
+        
 
         //Debug.Log(rb.velocity.sqrMagnitude);
         if (rb.velocity.sqrMagnitude >= 0.01)
@@ -110,6 +116,11 @@ public class PlayerMove : MonoBehaviour
             animator.Play("Base Layer.Idle");
             
         }
+    }
+
+    public void Die()
+    {
+        dead = true;
     }
 
     private void flipSprite(bool left) {

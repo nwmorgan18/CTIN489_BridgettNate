@@ -138,4 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   repulsespeed: 5000
   capsulenum: 0
+  LightningStart: {fileID: 0}
+  LightningEnd: {fileID: 0}
+  LightningLifeTime: 0.3
   orbitspeed: 150

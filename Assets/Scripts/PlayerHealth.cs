@@ -145,6 +145,7 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
         isDead = true;
+        this.gameObject.GetComponent<PlayerMove>().Die();
 
         StartCoroutine(DieCoroutine());
     }

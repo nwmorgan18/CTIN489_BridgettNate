@@ -43,19 +43,24 @@ public class BossSpawn : MonoBehaviour
             {
                 for(int i = 0; i < 2; i++)
                 {
-                    List<Vector2> loclistcopy = spawnlocations;
-                    int randnum = Random.Range(0, spawnlocations.Count - 1);
-                    transform.position = spawnlocations[randnum];
+                    List<Vector2> spawncopy = new List<Vector2>();
+                    for(int j = 0; j < spawnlocations.Count; j++)
+                    {
+                        spawncopy.Add(spawnlocations[j]);
+                    }
+                    
+                    int randnum = Random.Range(0, spawncopy.Count - 1);
+                    transform.position = spawncopy[randnum];
                     Instantiate(EnemyPrefab, this.gameObject.transform.position, Quaternion.identity);
-                    loclistcopy.RemoveAt(randnum);
+                    spawncopy.RemoveAt(randnum);
 
-                    randnum = Random.Range(0, spawnlocations.Count - 1);
-                    transform.position = spawnlocations[randnum];
+                    randnum = Random.Range(0, spawncopy.Count - 1);
+                    transform.position = spawncopy[randnum];
                     Instantiate(EnemyPrefab, this.gameObject.transform.position, Quaternion.identity);
-                    loclistcopy.RemoveAt(randnum);
+                    spawncopy.RemoveAt(randnum);
 
-                    randnum = Random.Range(0, spawnlocations.Count - 1);
-                    transform.position = spawnlocations[randnum];
+                    randnum = Random.Range(0, spawncopy.Count - 1);
+                    transform.position = spawncopy[randnum];
                     Instantiate(LizardPrefab, this.gameObject.transform.position, Quaternion.identity);
                 }
 

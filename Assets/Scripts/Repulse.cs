@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using DigitalRuby.LightningBolt;
 
 public class Repulse : MonoBehaviour
 {
@@ -14,6 +15,14 @@ public class Repulse : MonoBehaviour
     [SerializeField] private int capsulenum;
     private List<Vector2> capsuleslots;
     Collider2D coll;
+    [SerializeField] GameObject LightningStart;
+    [SerializeField] GameObject LightningEnd;
+    //GameObject lightningclone;
+    GameObject currentenemy;
+    [SerializeField] float LightningLifeTime = 0.5f;
+    float lightningtime = 0.0f;
+    Vector2 dumbystart;
+    Vector2 dumbyend;
 
     //Vector2 gotopos;
     float distancemulti;
@@ -32,7 +41,7 @@ public class Repulse : MonoBehaviour
         //mainCamera = GameObject.FindWithTag("MainCamera");
         helper = GameObject.FindWithTag("Helper");
         capsuleslots = new List<Vector2>();
-        capsuleslots.Add(new Vector2(0,-2));
+        capsuleslots.Add(new Vector2(0, -2));
         capsuleslots.Add(new Vector2(0, 2));
         capsuleslots.Add(new Vector2(2, 0));
         capsuleslots.Add(new Vector2(-2, 0));
@@ -41,15 +50,46 @@ public class Repulse : MonoBehaviour
         capsuleslots.Add(new Vector2(-1.5f, 1.5f));
         capsuleslots.Add(new Vector2(1.5f, -1.5f));
 
+        dumbystart = new Vector2(100, 100);
+        dumbyend = new Vector2(100, 101);
+
+        //lightningclone = null;
         Physics2D.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider2D>(), coll);
     }
 
     private void Update()
     {
         
+        
+        if (lightningtime > 0)
+        {
+            lightningtime -= Time.deltaTime;
+
+            //Lightning.transform.position = this.transform.position;
+
+            if (currentenemy != null)
+            {
+                LightningStart.transform.position = this.transform.position;
+                LightningEnd.transform.position = currentenemy.transform.position;
+            }
+            else
+            {
+                LightningStart.transform.position = dumbystart;
+                LightningEnd.transform.position = dumbyend;
+            }
+            
+        }
+        else
+        {
+            //Lightning.transform.position = lightningstart;
+            LightningStart.transform.position = dumbystart;
+            LightningEnd.transform.position = dumbyend;
+        }
+        
+
     }
 
-        // Update is called once per frame
+    // Update is called once per frame
     void FixedUpdate()
     {
 
@@ -85,7 +125,7 @@ public class Repulse : MonoBehaviour
             direction = helperpos - capsulepos + capsuleslots[capsulenum];
             //rb.velocity = direction.normalized * orbitspeed;
             rb.AddForce(direction.normalized * orbitspeed);
-            
+
         }
 
         if (Input.GetKeyUp("r"))
@@ -100,6 +140,17 @@ public class Repulse : MonoBehaviour
         if (Input.GetKey("escape"))
         {
             Application.Quit();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            currentenemy = other.gameObject;
+            //lightningclone = Instantiate(Lightning, this.transform);
+            lightningtime = LightningLifeTime;
+            //lightningclone.GetComponent<LightningBoltScript>().StartPosition = this.transform.position;
         }
     }
 }
