@@ -23,6 +23,7 @@ public class Repulse : MonoBehaviour
     float lightningtime = 0.0f;
     Vector2 dumbystart;
     Vector2 dumbyend;
+    private AudioSource shocksound;
 
     //Vector2 gotopos;
     float distancemulti;
@@ -53,6 +54,8 @@ public class Repulse : MonoBehaviour
         dumbystart = new Vector2(100, 100);
         dumbyend = new Vector2(100, 101);
 
+        shocksound = GetComponent<AudioSource>();
+
         //lightningclone = null;
         Physics2D.IgnoreCollision(GameObject.FindWithTag("Player").GetComponent<Collider2D>(), coll);
     }
@@ -81,7 +84,10 @@ public class Repulse : MonoBehaviour
         }
         else
         {
-            //Lightning.transform.position = lightningstart;
+            if (shocksound.isPlaying)
+            {
+                shocksound.Pause();
+            }
             LightningStart.transform.position = dumbystart;
             LightningEnd.transform.position = dumbyend;
         }
@@ -147,6 +153,7 @@ public class Repulse : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            shocksound.Play();
             currentenemy = other.gameObject;
             //lightningclone = Instantiate(Lightning, this.transform);
             lightningtime = LightningLifeTime;
