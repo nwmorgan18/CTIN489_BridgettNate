@@ -156,8 +156,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c295e1b5b7df09348b5dcc6c3384f83b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.483
+  m_Pitch: 1.5
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   maxhealth: 3
   pushback: 3000
   invicibletime: 1
-  shakeintensity: 5
+  shakeintensity: 10
   shaketime: 0.1
   TelemetryManager: {fileID: 0}
   colorDuration: 0.25

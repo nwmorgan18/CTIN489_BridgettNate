@@ -692,9 +692,9 @@ GameObject:
   - component: {fileID: 48840518}
   - component: {fileID: 48840517}
   - component: {fileID: 48840516}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Broken_Ship (2)
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4379,8 +4379,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7538647200109106598, guid: 01e5bd5ade8af3140baef6b99cb5f854, type: 3}
+      propertyPath: m_Pitch
+      value: 2.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538647200109106598, guid: 01e5bd5ade8af3140baef6b99cb5f854, type: 3}
       propertyPath: m_Volume
-      value: 0.62
+      value: 0.437
       objectReference: {fileID: 0}
     - target: {fileID: 7538647200109106616, guid: 01e5bd5ade8af3140baef6b99cb5f854, type: 3}
       propertyPath: m_Name

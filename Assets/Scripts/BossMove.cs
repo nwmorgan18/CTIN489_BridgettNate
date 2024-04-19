@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class BossMove : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class BossMove : MonoBehaviour
     private AudioSource damagesound;
     [SerializeField] private int health = 3;
     [SerializeField] private float invincibletime = 1f;
+    private int currhealth;
     private float currentlyinvincible = 0f;
     private GameObject spawner;
     private NavMeshAgent agent;
@@ -25,6 +27,7 @@ public class BossMove : MonoBehaviour
     private bool justHit;
     public int targetSceneBuildIndex; // Name of the scene to transition to
     [SerializeField] private GameObject shippiece;
+    [SerializeField] private Slider healthbar;
 
 
     // Start is called before the first frame update
@@ -41,6 +44,7 @@ public class BossMove : MonoBehaviour
         // sprite renderer for color change
         spriteRenderer = GetComponent<SpriteRenderer>();
         justHit = false;
+        currhealth = health;
     }
 
     // Update is called once per frame
@@ -94,11 +98,12 @@ public class BossMove : MonoBehaviour
         {
             justHit = true;
             changeColor();
-            health -= 1;
+            currhealth -= 1;
+            healthbar.value = (float)currhealth / (float)health;
             //Debug.Log("Enemy Hit");
             currentlyinvincible = invincibletime;
             //damagesound.Play();
-            if(health <= 0)
+            if(currhealth <= 0)
             {
                 /*
                 spawner.GetComponent<ShipPieceSpawn>().AddKill(1);
