@@ -9853,52 +9853,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1071409929052019600, guid: 30c46948dc662f84d8abe744964603fc, type: 3}
-      propertyPath: m_text
-      value: It seems the planet's locals have stolen the pieces needed to rebuild
-        your ship! Get them back!
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071409929052019600, guid: 30c46948dc662f84d8abe744964603fc, type: 3}
-      propertyPath: m_margin.w
-      value: -18.67109
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071409929052019600, guid: 30c46948dc662f84d8abe744964603fc, type: 3}
-      propertyPath: m_margin.x
-      value: -236.5003
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071409929052019600, guid: 30c46948dc662f84d8abe744964603fc, type: 3}
-      propertyPath: m_margin.z
-      value: -217.82921
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071409929052019600, guid: 30c46948dc662f84d8abe744964603fc, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071409929052019601, guid: 30c46948dc662f84d8abe744964603fc, type: 3}
-      propertyPath: message
-      value: It seems the planet's locals have stolen the pieces needed to rebuild
-        your ship! Get them back!
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071409929052019601, guid: 30c46948dc662f84d8abe744964603fc, type: 3}
-      propertyPath: displayTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071409929052019602, guid: 30c46948dc662f84d8abe744964603fc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071409929052019602, guid: 30c46948dc662f84d8abe744964603fc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -82
-      objectReference: {fileID: 0}
-    - target: {fileID: 7107455795190342186, guid: 30c46948dc662f84d8abe744964603fc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7493942977500971654, guid: 30c46948dc662f84d8abe744964603fc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30c46948dc662f84d8abe744964603fc, type: 3}
 --- !u!1001 &7283488036736299607
