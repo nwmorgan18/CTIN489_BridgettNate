@@ -11,7 +11,7 @@ public class SwitchScene : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Ensure it's the player character entering the trigger
         {
-            TelemetryManager.GetComponent<PlayerMetricRecord>().SetLevel1FinishTime(Time.realtimeSinceStartup);
+            //TelemetryManager.GetComponent<PlayerMetricRecord>().SetLevel1FinishTime(Time.realtimeSinceStartup);
 
             SceneManager.LoadScene(targetSceneBuildIndex); // Load the specified scene
             Debug.Log("Switching scene");

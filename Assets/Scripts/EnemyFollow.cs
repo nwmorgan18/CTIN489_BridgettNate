@@ -171,7 +171,7 @@ public class EnemyFollow : MonoBehaviour
             spawner.GetComponent<ShipPieceSpawn>().AddKill(1);
             if (spawner.GetComponent<ShipPieceSpawn>().GetKills() >= spawner.GetComponent<ShipPieceSpawn>().GetNeededKills())
             {
-                spawner.GetComponent<ShipPieceSpawn>().SetPieceLocation(this.transform.position);
+                //spawner.GetComponent<ShipPieceSpawn>().SetPieceLocation(this.transform.position);
             }
             spawner.GetComponent<EnemySpawn>().KillFirst();
         }

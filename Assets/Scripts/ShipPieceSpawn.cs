@@ -10,6 +10,7 @@ public class ShipPieceSpawn : MonoBehaviour
     bool spawned;
     public GameObject shippiece;
     private Vector2 spawnpos;
+    [SerializeField] public GameObject exitwall;
 
     public void AddKill(int numkilled)
     {
@@ -50,8 +51,10 @@ public class ShipPieceSpawn : MonoBehaviour
 
         if(enoughkills && !spawned)
         {
-            shippiece.transform.position = spawnpos;
-            shippiece.SetActive(true);
+            GetComponent<EnemySpawn>().AcquirePiece();
+            exitwall.SetActive(false);
+            //shippiece.transform.position = spawnpos;
+            //shippiece.SetActive(true);
             spawned = true;
         }
         
