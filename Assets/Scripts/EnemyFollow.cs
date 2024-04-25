@@ -25,7 +25,8 @@ public class EnemyFollow : MonoBehaviour
     private bool justHit;
     bool isDead;
     bool islevel3 = false;
-    
+    Collider2D coll;
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,18 @@ public class EnemyFollow : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         justHit = false;
         isDead = false;
+
+
+        coll = GetComponent<Collider2D>();
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Bullet");
+        //GameObject obj = GameObject.FindWithTags(allignoretags[i]);
+        for (int j = 0; j < objs.Length; j++)
+        {
+            if (objs[j] != null)
+            {
+                Physics2D.IgnoreCollision(objs[j].GetComponent<Collider2D>(), coll);
+            }
+        }
     }
 
     // Update is called once per frame

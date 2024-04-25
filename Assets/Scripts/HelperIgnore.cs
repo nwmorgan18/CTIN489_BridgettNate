@@ -11,7 +11,7 @@ public class HelperIgnore : MonoBehaviour
     {
         coll = GetComponent<Collider2D>();
 
-        allignoretags = new List<string>(){ "Tree", "Player", "Enemy", "Wall", "PlayerFeet"};
+        allignoretags = new List<string>(){ "Tree", "Player", "Enemy", "Wall", "PlayerFeet", "Bullet"};
     }
 
 

@@ -13,6 +13,7 @@ TagManager:
   - Spawner
   - PlayerFeet
   - Boss
+  - Bullet
   layers:
   - Default
   - TransparentFX
