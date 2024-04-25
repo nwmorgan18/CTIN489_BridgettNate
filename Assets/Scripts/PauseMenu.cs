@@ -14,11 +14,13 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject controls;
     [SerializeField] private AudioMixer myMixer;
     [SerializeField] private Slider musicSlider;
-
-    void Start() {
-        setMusicVolume();
+    public void Start() {
+    {
+        // Set the slider value to the middle of its range
+        musicSlider.value = (musicSlider.minValue + musicSlider.maxValue) / 2f;
     }
-    void FixedUpdate () {
+    }
+    public void OnMusicSliderChanged(float value) {
         setMusicVolume();
     }
 
@@ -52,5 +54,6 @@ public class PauseMenu : MonoBehaviour
     public void setMusicVolume() {
         float volume = musicSlider.value;
         myMixer.SetFloat("Master", Mathf.Log10(volume)*20);
+        Debug.Log("setting volume");
     }
 }

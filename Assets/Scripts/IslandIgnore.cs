@@ -7,11 +7,10 @@ public class IslandIgnore : MonoBehaviour
 {
     public GameObject swamp;
     private Collider2D swampCollider;
-    static int numBridges = 0;
+    public static int numBridges = 0;
 
     void Start() {
         swampCollider = swamp.GetComponent<Collider2D>();
-        numBridges = 0;
         // Debug.Log(gameObject.name);
     }
 
@@ -24,6 +23,7 @@ public class IslandIgnore : MonoBehaviour
             swampCollider.gameObject.SetActive(false);
             numBridges++;
             Debug.Log("Island");
+            Debug.Log("numBridges: " + numBridges);
         }
     }
 
@@ -38,6 +38,8 @@ public class IslandIgnore : MonoBehaviour
             if (numBridges == 0) {
                 string currentscene = SceneManager.GetActiveScene().name;
                 SceneManager.LoadScene(currentscene);
+                numBridges = 0;
+                Debug.Log("resetting numBridges");
             }
         }
     }

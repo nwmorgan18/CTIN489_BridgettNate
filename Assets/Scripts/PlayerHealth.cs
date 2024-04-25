@@ -138,6 +138,10 @@ public class PlayerHealth : MonoBehaviour
     string currentscene = SceneManager.GetActiveScene().name;
     SceneManager.LoadScene(currentscene);
     curhealth = maxhealth;
+    if (currentscene == "Level 2") {
+        IslandIgnore.numBridges = 0;
+        Debug.Log("resetting numBridges");
+    }
 }
 
     private void Die() {
