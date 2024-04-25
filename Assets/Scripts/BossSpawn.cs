@@ -41,6 +41,7 @@ public class BossSpawn : MonoBehaviour
 
             if (currentwait <= 0)
             {
+                /*
                 for(int i = 0; i < 2; i++)
                 {
                     List<Vector2> spawncopy = new List<Vector2>();
@@ -63,6 +64,26 @@ public class BossSpawn : MonoBehaviour
                     transform.position = spawncopy[randnum];
                     Instantiate(LizardPrefab, this.gameObject.transform.position, Quaternion.identity);
                 }
+                */
+                List<Vector2> spawncopy = new List<Vector2>();
+                for (int j = 0; j < spawnlocations.Count; j++)
+                {
+                    spawncopy.Add(spawnlocations[j]);
+                }
+
+                int randnum = Random.Range(0, spawncopy.Count - 1);
+                transform.position = spawncopy[randnum];
+                Instantiate(EnemyPrefab, this.gameObject.transform.position, Quaternion.identity);
+                spawncopy.RemoveAt(randnum);
+
+                randnum = Random.Range(0, spawncopy.Count - 1);
+                transform.position = spawncopy[randnum];
+                Instantiate(EnemyPrefab, this.gameObject.transform.position, Quaternion.identity);
+                spawncopy.RemoveAt(randnum);
+
+                randnum = Random.Range(0, spawncopy.Count - 1);
+                transform.position = spawncopy[randnum];
+                Instantiate(LizardPrefab, this.gameObject.transform.position, Quaternion.identity);
 
                 spawnsound.Play();
 
