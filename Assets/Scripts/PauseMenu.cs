@@ -21,11 +21,6 @@ public class PauseMenu : MonoBehaviour
     void FixedUpdate () {
         setMusicVolume();
     }
-    
-    public void Pause() {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0;
-    }
 
     public void Controls() {
         restart.SetActive(false);
