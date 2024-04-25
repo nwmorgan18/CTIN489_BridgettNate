@@ -30,6 +30,8 @@ public class LizardMove : MonoBehaviour
 
     private float currenttime;
 
+    Collider2D coll;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,17 @@ public class LizardMove : MonoBehaviour
         animator = GetComponent<Animator>();
 
         isDead = false;
+
+        coll = GetComponent<Collider2D>();
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Bullet");
+        //GameObject obj = GameObject.FindWithTags(allignoretags[i]);
+        for (int j = 0; j < objs.Length; j++)
+        {
+            if (objs[j] != null)
+            {
+                Physics2D.IgnoreCollision(objs[j].GetComponent<Collider2D>(), coll);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)

@@ -369,7 +369,6 @@ GameObject:
   - component: {fileID: 22780993}
   - component: {fileID: 22780992}
   - component: {fileID: 22780991}
-  - component: {fileID: 22780990}
   m_Layer: 0
   m_Name: Wall (1)
   m_TagString: Wall
@@ -392,22 +391,6 @@ Transform:
   m_Father: {fileID: 711809187}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &22780990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22780988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!50 &22780991
 Rigidbody2D:
   serializedVersion: 4
@@ -2895,6 +2878,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3362292325059871364, guid: f0744415b95fb6543a7cc3c3a8cf25f1, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3362292325059871365, guid: f0744415b95fb6543a7cc3c3a8cf25f1, type: 3}
       propertyPath: health
       value: 5
@@ -4775,7 +4762,6 @@ GameObject:
   - component: {fileID: 520179074}
   - component: {fileID: 520179073}
   - component: {fileID: 520179072}
-  - component: {fileID: 520179071}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Wall
@@ -4799,22 +4785,6 @@ Transform:
   m_Father: {fileID: 711809187}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &520179071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520179069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!50 &520179072
 Rigidbody2D:
   serializedVersion: 4
@@ -9204,7 +9174,6 @@ GameObject:
   - component: {fileID: 1051754689}
   - component: {fileID: 1051754688}
   - component: {fileID: 1051754687}
-  - component: {fileID: 1051754686}
   m_Layer: 0
   m_Name: Wall (2)
   m_TagString: Wall
@@ -9227,22 +9196,6 @@ Transform:
   m_Father: {fileID: 711809187}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1051754686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1051754684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!50 &1051754687
 Rigidbody2D:
   serializedVersion: 4
@@ -16841,7 +16794,8 @@ MonoBehaviour:
   shippiece: {fileID: 293731015}
   healthbar: {fileID: 1203448449}
   bulletprefab: {fileID: 8306704207287308778, guid: 10bd85f900c412c47a24d96b3d571df6, type: 3}
-  shoottime: 2
+  shoottime: 5
+  shootpause: 0.5
 --- !u!61 &1848978087
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18638,7 +18592,6 @@ GameObject:
   - component: {fileID: 2001887615}
   - component: {fileID: 2001887614}
   - component: {fileID: 2001887613}
-  - component: {fileID: 2001887612}
   m_Layer: 0
   m_Name: Wall (3)
   m_TagString: Wall
@@ -18661,22 +18614,6 @@ Transform:
   m_Father: {fileID: 711809187}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2001887612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001887610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!50 &2001887613
 Rigidbody2D:
   serializedVersion: 4

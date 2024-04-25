@@ -275,7 +275,7 @@ MonoBehaviour:
   maxhealth: 3
   pushback: 3000
   invicibletime: 1
-  shakeintensity: 10
+  shakeintensity: 20
   shaketime: 0.1
   TelemetryManager: {fileID: 0}
   colorDuration: 0.25

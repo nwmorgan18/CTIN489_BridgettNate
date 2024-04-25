@@ -32,6 +32,11 @@ public class BossMove : MonoBehaviour
     private List<Vector2> bulletlocations;
     [SerializeField] private float shoottime = 10f;
     private float currshoot;
+    private int randnum = -1;
+    [SerializeField] private float shootpause = 1f;
+    private float currentpause = 0f;
+    private int radialindex;
+    bool runningradial = false;
 
 
 
@@ -51,9 +56,10 @@ public class BossMove : MonoBehaviour
         justHit = false;
         currhealth = health;
 
-        bulletlocations = new List<Vector2>() { new Vector2(0f, -12f), new Vector2(-4.24f, -10.24f), new Vector2(-6f, -6f), new Vector2(-4.24f, -1.76f), new Vector2(0f, 0f), new Vector2(4.24f, -1.76f), new Vector2(6f, -6f), new Vector2(-4.24f, -1.76f), new Vector2(4.24f, -10.24f) };
+        bulletlocations = new List<Vector2>() { new Vector2(0f, -12f), new Vector2(-4.24f, -10.24f), new Vector2(-6f, -6f), new Vector2(-4.24f, -1.76f), new Vector2(0f, 0f), new Vector2(4.24f, -1.76f), new Vector2(6f, -6f), new Vector2(4.24f, -10.24f) };
 
         currshoot = shoottime;
+        
         //GameObject bullet = Instantiate(bulletprefab, this.transform.position, Quaternion.identity);
         //bullet.GetComponent<BulletMove>().SetDirection(new Vector2(0f, -1f));
     }
@@ -70,20 +76,62 @@ public class BossMove : MonoBehaviour
             currentlyinvincible -= Time.deltaTime;
             //agent.speed = 0f;
         }
-        if(currshoot > 0)
+        
+        if(currentpause > 0)
+        {
+            currentpause -= Time.deltaTime;
+        }
+        else if(currshoot > 0)
         {
             currshoot -= Time.deltaTime; 
         }
 
+        if (currentpause <=0 && runningradial)
+        {
+            GameObject bullet = Instantiate(bulletprefab, bulletlocations[radialindex], Quaternion.identity);
+            radialindex++;
+            currentpause = shootpause;
+
+            if(radialindex >= bulletlocations.Count)
+            {
+                currentpause = 0f;
+                runningradial = false;
+                radialindex = 0;
+            }
+        }
+
         if(currshoot <= 0)
         {
-            int randnum = Random.Range(0, 2);
+            randnum = Random.Range(0, 2);
+            //randnum = 1;
 
-            for(int i = 0; i < bulletlocations.Count; i++)
+            if(randnum == 0)
             {
-                GameObject bullet = Instantiate(bulletprefab, bulletlocations[i], Quaternion.identity);
-                bullet.GetComponent<BulletMove>().SetDirection(bullet.transform.position - transform.position);
+                for (int i = 0; i < bulletlocations.Count; i += 2)
+                {
+                    GameObject bullet = Instantiate(bulletprefab, bulletlocations[i], Quaternion.identity);
+                    //bullet.GetComponent<BulletMove>().SetDirection(new Vector2(bullet.transform.position.x - transform.position.x, bullet.transform.position.y - transform.position.y - 12f));
+                }
             }
+
+            if(randnum == 1)
+            {
+                GameObject bullet = Instantiate(bulletprefab, bulletlocations[radialindex], Quaternion.identity);
+                radialindex++;
+                currentpause = shootpause;
+                runningradial = true;
+            }
+
+            if(randnum == 2)
+            {
+                for (int i = 1; i < bulletlocations.Count; i += 2)
+                {
+                    GameObject bullet = Instantiate(bulletprefab, bulletlocations[i], Quaternion.identity);
+                    //bullet.GetComponent<BulletMove>().SetDirection(new Vector2(bullet.transform.position.x - transform.position.x, bullet.transform.position.y - transform.position.y - 12f));
+                }
+            }
+
+
             currshoot = shoottime;
         }
     }

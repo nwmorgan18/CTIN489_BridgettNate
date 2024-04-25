@@ -68,7 +68,21 @@ public class PlayerHealth : MonoBehaviour
         if (isDead) {
             return;
         }
-        if (other.gameObject.CompareTag("Enemy") && curtime <= 0f)
+        if(other.gameObject.CompareTag("Bullet"))
+        {
+            if (curtime <= 0f)
+            {
+                justHit = true;
+                changeColor();
+                curhealth--;
+                Vector2 direction = transform.position - other.gameObject.transform.position;
+                rb.AddForce(direction.normalized * pushback);
+                curtime = invicibletime;
+                CameraShake.Instance.Shake(shakeintensity, shaketime);
+            }
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.CompareTag("Enemy") && curtime <= 0f)
         {
             justHit = true;
             changeColor();
