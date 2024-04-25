@@ -23,7 +23,7 @@ public class IslandIgnore : MonoBehaviour
             //swampCollider.isTrigger = false;
             swampCollider.gameObject.SetActive(false);
             numBridges++;
-            // Debug.Log("Island");
+            Debug.Log("Island");
         }
     }
 
