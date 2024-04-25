@@ -18,7 +18,8 @@ public class Level2ShipPieceControl : MonoBehaviour
     {
         if (lizardsleft <= 0)
         {
-            transform.position = new Vector2(0f, -6f);
+            exitroute.SetActive(true);
+            //transform.position = new Vector2(0f, -6f);
         }
     }
 
