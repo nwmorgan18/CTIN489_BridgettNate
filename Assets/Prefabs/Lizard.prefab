@@ -225,7 +225,7 @@ MonoBehaviour:
   chargetime: 0.5
   lungetime: 3
   aimtime: 2
-  speed: 20
+  speed: 650
   health: 2
   invincibletime: 1
   shippiece: {fileID: 0}

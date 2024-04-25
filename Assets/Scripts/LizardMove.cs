@@ -135,7 +135,7 @@ public class LizardMove : MonoBehaviour
             //dont rotate, move in direction of 
             transform.right = lungedir;
 
-            rb.AddForce(transform.right * speed);
+            rb.AddForce(transform.right * speed * Time.deltaTime);
 
             if(currenttime <= 0)
             {

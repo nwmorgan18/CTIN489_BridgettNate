@@ -12,6 +12,7 @@ TagManager:
   - Capsule
   - Spawner
   - PlayerFeet
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
+  - Bullet
   - 
   - 
   - 

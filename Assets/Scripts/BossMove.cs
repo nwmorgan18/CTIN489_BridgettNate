@@ -9,7 +9,7 @@ public class BossMove : MonoBehaviour
 {
     //private Vector3 playerPosition;
     private GameObject player;
-    [SerializeField] private float moveSpeed = 3.5f;
+    //[SerializeField] private float moveSpeed = 3.5f;
     Rigidbody2D rb;
     //Vector2 position = new Vector2(0f, 0f);
     Vector2 direction;
@@ -28,6 +28,11 @@ public class BossMove : MonoBehaviour
     public int targetSceneBuildIndex; // Name of the scene to transition to
     [SerializeField] private GameObject shippiece;
     [SerializeField] private Slider healthbar;
+    [SerializeField] private GameObject bulletprefab;
+    private List<Vector2> bulletlocations;
+    [SerializeField] private float shoottime = 10f;
+    private float currshoot;
+
 
 
     // Start is called before the first frame update
@@ -37,7 +42,7 @@ public class BossMove : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         damagesound = GetComponent<AudioSource>();
         spawner = GameObject.FindWithTag("Spawner");
-        agent = GetComponent <NavMeshAgent>();
+        //agent = GetComponent <NavMeshAgent>();
         animator = GetComponent<Animator>();
         // start walking animation
         // animator.Play("Base Layer.Enemy1Walk");
@@ -45,6 +50,12 @@ public class BossMove : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         justHit = false;
         currhealth = health;
+
+        bulletlocations = new List<Vector2>() { new Vector2(0f, -12f), new Vector2(-4.24f, -10.24f), new Vector2(-6f, -6f), new Vector2(-4.24f, -1.76f), new Vector2(0f, 0f), new Vector2(4.24f, -1.76f), new Vector2(6f, -6f), new Vector2(-4.24f, -1.76f), new Vector2(4.24f, -10.24f) };
+
+        currshoot = shoottime;
+        //GameObject bullet = Instantiate(bulletprefab, this.transform.position, Quaternion.identity);
+        //bullet.GetComponent<BulletMove>().SetDirection(new Vector2(0f, -1f));
     }
 
     // Update is called once per frame
@@ -57,11 +68,23 @@ public class BossMove : MonoBehaviour
         if(currentlyinvincible > 0)
         {
             currentlyinvincible -= Time.deltaTime;
-            agent.speed = 0f;
+            //agent.speed = 0f;
         }
-        else
+        if(currshoot > 0)
         {
-            agent.speed = moveSpeed;
+            currshoot -= Time.deltaTime; 
+        }
+
+        if(currshoot <= 0)
+        {
+            int randnum = Random.Range(0, 2);
+
+            for(int i = 0; i < bulletlocations.Count; i++)
+            {
+                GameObject bullet = Instantiate(bulletprefab, bulletlocations[i], Quaternion.identity);
+                bullet.GetComponent<BulletMove>().SetDirection(bullet.transform.position - transform.position);
+            }
+            currshoot = shoottime;
         }
     }
     private void FixedUpdate()

@@ -17,7 +17,7 @@ public class EnemyFollow : MonoBehaviour
     [SerializeField] private float invincibletime = 1f;
     private float currentlyinvincible = 0f;
     private GameObject spawner;
-    private NavMeshAgent agent;
+    //private NavMeshAgent agent;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private float colorDuration = 0.5f;
@@ -39,7 +39,7 @@ public class EnemyFollow : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         damagesound = GetComponent<AudioSource>();
         spawner = GameObject.FindWithTag("Spawner");
-        agent = GetComponent <NavMeshAgent>();
+        //agent = GetComponent <NavMeshAgent>();
         animator = GetComponent<Animator>();
         // start walking animation
         animator.Play("Base Layer.Enemy1Walk");
@@ -56,11 +56,11 @@ public class EnemyFollow : MonoBehaviour
         if(currentlyinvincible > 0)
         {
             currentlyinvincible -= Time.deltaTime;
-            agent.speed = 0f;
+            //agent.speed = 0f;
         }
         else
         {
-            agent.speed = moveSpeed;
+            //agent.speed = moveSpeed;
         }
     }
     private void FixedUpdate()

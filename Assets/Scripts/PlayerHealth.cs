@@ -77,7 +77,7 @@ public class PlayerHealth : MonoBehaviour
             rb.AddForce(direction.normalized * pushback);
             curtime = invicibletime;
             CameraShake.Instance.Shake(shakeintensity, shaketime);
-            Debug.Log("Player Hit");
+            //Debug.Log("Player Hit");
             // animator.Play("Hurt.AstronautHurt");
         }
     }
