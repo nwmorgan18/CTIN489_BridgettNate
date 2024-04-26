@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ShipPieceSpawn : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class ShipPieceSpawn : MonoBehaviour
     [SerializeField] public GameObject exitwall;
     [SerializeField] public GameObject container;
     public TextMeshProUGUI textMeshPro;
+    [SerializeField] Slider progressbar;
 
     public void AddKill(int numkilled)
     {
@@ -47,6 +49,7 @@ public class ShipPieceSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        progressbar.value = (float)(killsneeded-deadenemies) / (float)killsneeded;
         if(deadenemies >= killsneeded)
         {
             enoughkills = true;
