@@ -115,13 +115,13 @@ public class PlayerHealth : MonoBehaviour
         if (isDead) {
             return;
         }
-        if (curhealth == 3) {
+        if (curhealth == 5) {
             healthImage.sprite = fullHealthSprite;
         }
-        else if (curhealth == 2) {
+        else if (curhealth <= 4 && curhealth > 2) {
             healthImage.sprite = medHealthSprite;
         }
-        else if (curhealth == 1) {
+        else if (curhealth <= 2) {
             healthImage.sprite = lowHealthSprite;
         }
     }

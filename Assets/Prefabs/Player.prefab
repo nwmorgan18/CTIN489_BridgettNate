@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6360096d815184fac386b4f4b0085c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 3
+  maxhealth: 5
   pushback: 3000
   invicibletime: 1
   shakeintensity: 20
