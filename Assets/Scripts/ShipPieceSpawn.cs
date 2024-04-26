@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShipPieceSpawn : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ShipPieceSpawn : MonoBehaviour
     public GameObject shippiece;
     private Vector2 spawnpos;
     [SerializeField] public GameObject exitwall;
+    [SerializeField] public GameObject container;
+    public TextMeshProUGUI textMeshPro;
 
     public void AddKill(int numkilled)
     {
@@ -51,6 +54,10 @@ public class ShipPieceSpawn : MonoBehaviour
 
         if(enoughkills && !spawned)
         {
+            Time.timeScale = 0;
+            container.SetActive(true);
+            UpdateText("Looks like there's a path up ahead!");
+            
             GetComponent<EnemySpawn>().AcquirePiece();
             exitwall.SetActive(false);
             //shippiece.transform.position = spawnpos;
@@ -58,5 +65,16 @@ public class ShipPieceSpawn : MonoBehaviour
             spawned = true;
         }
         
+    }
+
+    public void UpdateText(string newText)
+    {
+        // Assign the new text to the TextMeshPro component
+        textMeshPro.text = newText;
+    }
+
+    public void next() {
+        container.SetActive(false);
+        Time.timeScale = 1;
     }
 }
